@@ -1,0 +1,12 @@
+@import 'reset';
+@import 'variables/global.scss';
+@import 'themes/dark.scss';
+@import 'themes/light.scss';
+
+.App {
+  font-size: var(--font-m);
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  min-height: 100vh;
+}
