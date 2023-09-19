@@ -7,7 +7,7 @@ import { ThemeContext } from '../themes/ThemeContext'
 
 const App = () => {
   const { theme, toggleTheme } = useContext(ThemeContext)
-  console.log('213')
+  console.log('21322222')
   return (
     <div className={`App ${theme}`}>
       <Link to="/">MAIN</Link>
