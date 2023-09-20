@@ -1,7 +1,11 @@
 .ToggleTheme {
-  padding: 10px;
-  border-radius: 20%;
   img {
     width: 40px;
   }
+}
+.theme {
+  border-radius: 10px;
+  background-color: rgb(255, 120, 120);
+  padding: 5px 10px 5px 10px;
+  color: #fff;
 }

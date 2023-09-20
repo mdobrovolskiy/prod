@@ -20,9 +20,9 @@ export const ToggleTheme: FC<ToggleThemeProps> = (props) => {
 
   return (
     <Button
-      theme={ThemeButton.CLEAR}
+      theme={ThemeButton.MAIN}
       onClick={() => toggleTheme(theme)}
-      className={classNames(styles.ToggleTheme, {}, [className])}
+      className={classNames(styles.ToggleTheme, {}, [])}
     >
       <img className={styles.image} src={currentIcon} alt="switch theme" />
     </Button>

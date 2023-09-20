@@ -14,5 +14,8 @@ export function buildPlugins(
     new HtmlWebpackPlugin({
       template: options.paths.html,
     }),
+    new webpack.DefinePlugin({
+      __ISDEV__: JSON.stringify(options.isDev),
+    }),
   ]
 }

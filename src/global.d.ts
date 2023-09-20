@@ -6,3 +6,4 @@ declare module '*.scss' {
   export = classNames
 }
 declare module '*.png'
+declare const __ISDEV__: boolean

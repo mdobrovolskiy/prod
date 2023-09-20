@@ -1,17 +1,23 @@
-import { useContext } from 'react'
+import { Suspense, useContext } from 'react'
 import { ThemeContext } from 'app/providers/ThemeProvider/ThemeContext'
 import AppRouter from 'app/providers/router'
 import Navbar from 'widgets/Navbar/ui/Navbar'
-import SideBar from 'widgets/Sidebar/ui/SidebarMain/SideBar'
+import { SideBar } from 'widgets/Sidebar'
 
 const App = () => {
   const { theme } = useContext(ThemeContext)
 
   return (
     <div className={`App ${theme}`}>
-      <Navbar />
-      <AppRouter />
-      <SideBar />
+      <Suspense fallback={'222'}>
+        <Navbar />
+      </Suspense>
+      <div className="content-page">
+        <Suspense fallback>
+          <SideBar />
+        </Suspense>
+        <AppRouter />
+      </div>
     </div>
   )
 }
