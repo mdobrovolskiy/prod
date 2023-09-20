@@ -2,6 +2,14 @@ import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BuildOptions } from './types/config'
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif)$/i,
+    use: [
+      {
+        loader: 'file-loader',
+      },
+    ],
+  }
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -25,5 +33,5 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     use: 'ts-loader',
     exclude: /node_modules/,
   }
-  return [typeScriptLoader, cssLoader]
+  return [typeScriptLoader, cssLoader, fileLoader]
 }

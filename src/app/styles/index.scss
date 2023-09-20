@@ -4,7 +4,7 @@
 @import 'themes/light.scss';
 
 .App {
-  font-size: var(--font-m);
+  font: var(--font-m);
   font-family: 'Roboto', sans-serif;
   background-color: var(--bg-color);
   color: var(--primary-color);

@@ -1,24 +1,17 @@
-import { Route, Routes, Link } from 'react-router-dom'
-
-import { MainAsync } from '../pages/Main/Main.async'
-import { HeoAsync } from '../pages/Heo/Heo.async'
-import { Suspense, useContext } from 'react'
-import { ThemeContext } from '../themes/ThemeContext'
+import { useContext } from 'react'
+import { ThemeContext } from 'app/providers/ThemeProvider/ThemeContext'
+import AppRouter from 'app/providers/router'
+import Navbar from 'widgets/Navbar/ui/Navbar'
+import SideBar from 'widgets/Sidebar/ui/SidebarMain/SideBar'
 
 const App = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext)
-  console.log('HELLO WORLD')
+  const { theme } = useContext(ThemeContext)
+
   return (
     <div className={`App ${theme}`}>
-      <Link to="/">MAIN</Link>
-      <Link to="/heo">HEO</Link>
-      <button onClick={() => toggleTheme(theme)}>TOGGLE</button>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Routes>
-          <Route path="/" element={<MainAsync />} />
-          <Route path="/heo" element={<HeoAsync />} />
-        </Routes>
-      </Suspense>
+      <Navbar />
+      <AppRouter />
+      <SideBar />
     </div>
   )
 }
