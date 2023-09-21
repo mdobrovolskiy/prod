@@ -1,24 +1,24 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 li {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 input,
 button,
 textarea,
 select {
-  margin: 0;
-  font: inherit;
+    margin: 0;
+    font: inherit;
 }
 
 a {
-  text-decoration: none;
-  color: var(--primary-color);
+    text-decoration: none;
+    color: var(--primary-color);
 }
 
 h1,
@@ -27,9 +27,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 300;
+    font-weight: 300;
 }
+
 button {
-  cursor: pointer;
-  border: none;
+    cursor: pointer;
+    border: none;
 }

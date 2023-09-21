@@ -1,25 +1,28 @@
 .SideBar {
-  width: var(--sidebar-width);
-  height: calc(100vh - var(--navbar-height));
-  position: relative;
-  background: var(--inverted-bg-color);
-  transition: width 0.3s;
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--navbar-height));
+    position: relative;
+    background: var(--inverted-bg-color);
+    transition: width 0.3s;
 }
+
 .collapsed {
-  width: var(--sidebar-width-collapsed);
+    width: var(--sidebar-width-collapsed);
 }
+
 .switchers {
-  position: absolute;
-  left: 0px;
-  bottom: 50px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
+
 .lang {
-  border-radius: 10px;
-  background-color: rgb(255, 120, 120);
-  padding: 5px 10px 5px 10px;
-  color: #fff;
-  margin-left: 10px;
+    border-radius: 10px;
+    background-color: rgb(255 120 120);
+    padding: 5px 10px;
+    color: #fff;
+    margin-left: 10px;
 }
