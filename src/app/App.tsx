@@ -6,7 +6,7 @@ import { SideBar } from 'widgets/Sidebar'
 
 const App = (): JSX.Element => {
     const { theme } = useContext(ThemeContext)
-    console.log('second pc')
+    console.log('second pc 2222222 ')
     return (
         <div className={`App ${theme}`}>
             <Suspense fallback={'222'}>
