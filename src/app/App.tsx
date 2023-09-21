@@ -4,22 +4,22 @@ import AppRouter from 'app/providers/router'
 import Navbar from 'widgets/Navbar/ui/Navbar'
 import { SideBar } from 'widgets/Sidebar'
 
-const App = () => {
-  const { theme } = useContext(ThemeContext)
+const App = (): JSX.Element => {
+    const { theme } = useContext(ThemeContext)
 
-  return (
-    <div className={`App ${theme}`}>
-      <Suspense fallback={'222'}>
-        <Navbar />
-      </Suspense>
-      <div className="content-page">
-        <Suspense fallback>
-          <SideBar />
-        </Suspense>
-        <AppRouter />
-      </div>
-    </div>
-  )
+    return (
+        <div className={`App ${theme}`}>
+            <Suspense fallback={'222'}>
+                <Navbar />
+            </Suspense>
+            <div className="content-page">
+                <Suspense fallback>
+                    <SideBar />
+                </Suspense>
+                <AppRouter />
+            </div>
+        </div>
+    )
 }
 
 export default App

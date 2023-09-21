@@ -5,18 +5,18 @@ import Backend from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
 i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  // pass the i18n instance to react-i18next.
-  .use(initReactI18next)
+    .use(Backend)
+    .use(LanguageDetector)
+// pass the i18n instance to react-i18next.
+    .use(initReactI18next)
 
-  .init({
-    fallbackLng: 'ru',
-    debug: __ISDEV__,
+    .init({
+        fallbackLng: 'ru',
+        debug: __ISDEV__,
 
-    interpolation: {
-      escapeValue: false,
-    },
-  })
+        interpolation: {
+            escapeValue: false
+        }
+    })
 
 export default i18n

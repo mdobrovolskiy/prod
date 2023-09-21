@@ -1,2 +1,2 @@
 import { lazy } from 'react'
-export const HeoAsync = lazy(() => import('./Heo'))
+export const HeoAsync = lazy(async () => await import('./Heo'))

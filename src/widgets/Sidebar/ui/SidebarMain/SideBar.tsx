@@ -1,4 +1,4 @@
-import { FC, Suspense, useState } from 'react'
+import { type FC, useState } from 'react'
 import styles from './SideBar.module.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Button } from 'widgets/Button'
@@ -10,29 +10,29 @@ interface SideBarProps {
   className?: string
 }
 export const SideBar: FC<SideBarProps> = (props) => {
-  const { className } = props
-  const [collapsed, setCollapsed] = useState(false)
+    const { className } = props
+    const [collapsed, setCollapsed] = useState(false)
 
-  const { t } = useTranslation()
+    const { t } = useTranslation()
 
-  const handleCollapsed = () => {
-    setCollapsed((prev) => !prev)
-  }
+    const handleCollapsed = () => {
+        setCollapsed((prev) => !prev)
+    }
 
-  return (
-    <div
-      className={classNames(styles.SideBar, { [styles.collapsed]: collapsed }, [
-        className,
-      ])}
-    >
-      <Button theme={ThemeButton.MAIN} onClick={handleCollapsed}>
-        {t('hello')}
-      </Button>
-      <div className={styles.switchers}>
-        <ToggleTheme />
+    return (
+        <div
+            className={classNames(styles.SideBar, { [styles.collapsed]: collapsed }, [
+                className
+            ])}
+        >
+            <Button theme={ThemeButton.MAIN} onClick={handleCollapsed}>
+                {t('hello')}
+            </Button>
+            <div className={styles.switchers}>
+                <ToggleTheme />
 
-        <ToggleLanguage />
-      </div>
-    </div>
-  )
+                <ToggleLanguage />
+            </div>
+        </div>
+    )
 }
