@@ -1,10 +1,10 @@
 import { classNames } from './classNames'
 describe('classNames', () => {
     it('only first argument', () => {
-        expect(classNames('class')).toBe('class ')
+        expect(classNames('class')).toBe('class')
     })
     it('with additional array', () => {
-        const expected = '123 hello world '
+        const expected = '123 hello world'
         expect(classNames('123', {}, ['hello', 'world'])).toBe(expected)
     })
     it('with mods and additional', () => {
@@ -16,7 +16,7 @@ describe('classNames', () => {
         expect(classNames('123', { hovered: true }, [undefined])).toBe(expected)
     })
     it('with mods false', () => {
-        const expected = '123 '
+        const expected = '123'
         expect(classNames('123', { hovered: false }, [undefined])).toBe(expected)
     })
 })

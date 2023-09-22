@@ -22,5 +22,6 @@
       "module": "CommonJS",
       "plugins": [{ "name": "typescript-plugin-css-modules" }]
     }
-  }
+  },
+  
 }
