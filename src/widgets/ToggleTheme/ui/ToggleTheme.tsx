@@ -20,7 +20,7 @@ export const ToggleTheme: FC<ToggleThemeProps> = (props) => {
 
     return (
         <Button theme={ThemeButton.MAIN} onClick={() => { toggleTheme(theme) }}>
-            <img className={styles.image} src={currentIcon} alt="switch theme" />
+            <img className={styles.image} width={36} src={currentIcon} alt="switch theme" />
         </Button>
     )
 }
