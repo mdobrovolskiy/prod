@@ -1,6 +1,6 @@
 import { screen, render, fireEvent } from '@testing-library/react'
 import { SideBar } from './SideBar'
-import { I18TestComponent } from 'helpers/i18TestComponent/i18TestComponent'
+import { I18TestComponent } from 'helpers/i18TestComponent/I18TestComponent'
 
 describe('Button tests', () => {
     test('render test', () => {

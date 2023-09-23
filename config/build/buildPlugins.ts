@@ -8,7 +8,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 export function buildPlugins (
     options: BuildOptions
 ): webpack.WebpackPluginInstance[] {
-    return [
+    const plugins = [
 
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
@@ -20,7 +20,11 @@ export function buildPlugins (
         }),
         new webpack.DefinePlugin({
             __ISDEV__: JSON.stringify(options.isDev)
-        }),
-        new BundleAnalyzerPlugin()
+        })
+
     ]
+    if (options.isDev) {
+        plugins.push(new BundleAnalyzerPlugin())
+    }
+    return plugins
 }
