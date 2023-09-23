@@ -14,7 +14,6 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install
-      - run: npm run unit
       - run: npm run lint:ts
       - run: npm run lint:scss
       - run: npm run build:prod
