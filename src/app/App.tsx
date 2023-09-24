@@ -1,13 +1,20 @@
-import { Suspense, useContext, useEffect, useState } from 'react'
+import { Suspense, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { ThemeContext } from 'app/providers/ThemeProvider/ThemeContext'
 import AppRouter from 'app/providers/router'
 import Navbar from 'widgets/Navbar/ui/Navbar'
 import { SideBar } from 'widgets/Sidebar'
 import { Loader } from 'widgets/Loader'
+import { Modal } from 'widgets/Modal/ui/Modal'
+import { Button } from 'widgets/Button'
+import { ThemeButton } from 'widgets/Button/ui/Button'
+import { ModalHandler } from 'shared/ui/ModalHandler/ModalHandler'
+import { useTranslation } from 'react-i18next'
 
 const App = (): JSX.Element => {
     const { theme } = useContext(ThemeContext)
     const [error, setError] = useState(false)
+    const { t } = useTranslation()
+
     useEffect(() => {
         if (error) {
             throw new Error()
@@ -16,16 +23,16 @@ const App = (): JSX.Element => {
     return (
         <div className={`App ${theme}`}>
 
-            <Suspense fallback={<Loader/>}>
-                <Navbar />
-            </Suspense>
+            <Navbar />
+
             <div className="content-page">
 
-                <Suspense fallback={<Loader/>}>
-                    <SideBar />
-                </Suspense>
+                <SideBar />
+
                 <AppRouter />
+
             </div>
+
         </div>
     )
 }
