@@ -1,4 +1,3 @@
-import { Counter } from 'entities/Counter/ui/Counter'
 import { useEffect, useState } from 'react'
 import { Button, ThemeButton } from 'widgets/Button/ui/Button'
 
@@ -13,7 +12,7 @@ const Main = () => {
         <Button onClick={() => { setError(true) }} theme={ThemeButton.MAIN}>
             Error
         </Button>
-        <Counter/>
+
     </>
 }
 

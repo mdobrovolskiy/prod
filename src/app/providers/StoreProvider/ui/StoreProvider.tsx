@@ -5,9 +5,7 @@ import { type StateSchema } from '../types/StateSchema'
 export interface StoreProviderProps {
     initialState?: StateSchema
 }
-export const StoreProvider: FC<StoreProviderProps> = ({ children, initialState }) => {
-    const store = createReduxStore(initialState)
-    return (
-        <Provider store={store}>{children}</Provider>
-    )
+export const StoreProvider: FC<StoreProviderProps> = ({ children }) => {
+    const store = createReduxStore()
+    return <Provider store={store}>{children}</Provider>
 }
