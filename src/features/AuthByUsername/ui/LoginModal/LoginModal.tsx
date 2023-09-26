@@ -1,5 +1,4 @@
 import { type FC } from 'react'
-import styles from './LoginModal.module.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Modal } from 'widgets/Modal/ui/Modal'
 import { LoginForm } from '../LoginForm/LoginForm'
