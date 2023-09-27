@@ -1,40 +1,35 @@
-import React, { type RefObject, type InputHTMLAttributes, memo, useRef, useState, useEffect } from 'react'
+import { type InputHTMLAttributes, memo, forwardRef } from 'react'
 import styles from './Input.module.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
 
 export enum InputTheme {
     CLEAR = 'clear',
     MAIN = 'main',
-    LOGIN = 'login'
+    LOGIN = 'login',
 }
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  className?: string
-  ref?: RefObject<HTMLInputElement>
-  theme?: InputTheme
-  isFocused?: boolean
+    className?: string
+    theme?: InputTheme
 }
 
-export const Input = memo((props: InputProps) => {
+type Ref = HTMLInputElement
+
+const InputWithRef = forwardRef<Ref, InputProps>((props, ref) => {
     const {
         className,
         type = 'text',
         theme = InputTheme.CLEAR,
-        isFocused,
         ...otherProps
     } = props
-    const inputRef = useRef(null)
-    useEffect(() => {
-        if (isFocused) {
-            inputRef.current.focus()
-        }
-    }, [isFocused])
+
     return (
         <input
-            ref={inputRef}
+            ref={ref}
             {...otherProps}
             type={type}
             className={classNames(styles.Input, {}, [className, styles[theme]])}
         />
     )
 })
+export const Input = memo(InputWithRef)

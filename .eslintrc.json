@@ -30,6 +30,7 @@
         "@typescript-eslint/indent": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "eslint(i18next/no-literal-string)": "off"
+        "eslint(i18next/no-literal-string)": "off",
+        "@typescript-eslint/ban-ts-comment": 1
     }
 }

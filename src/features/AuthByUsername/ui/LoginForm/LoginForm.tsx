@@ -4,35 +4,52 @@ import {
     type ChangeEvent,
     type FormEvent,
     useRef,
+    type RefObject,
+    useCallback,
+    useEffect,
 } from 'react'
 import styles from './LoginForm.module.scss'
 import { Input, InputTheme } from '../../../../widgets/Input/Input'
 import { Button, ThemeButton } from '../../../../widgets/Button/ui/Button'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { loginThunk } from '../../model/services/loginThunk'
 import { authDataSelector } from '../../model/selectors/getAuthData'
 import { type authSchema } from '../../model/types/authSchema'
+import { type ReduxStoreWithManager } from '../../../../app/providers/StoreProvider/types/StateSchema'
+import { authReducer } from 'features/AuthByUsername/model/slice/authSlice'
 
 interface LoginFormProps {
     className?: string
 }
 
-export const LoginForm: FC<LoginFormProps> = (props) => {
+export enum InputType {
+    LOGIN = 'login',
+    PASS = 'pass',
+}
+
+const LoginForm: FC<LoginFormProps> = (props) => {
     const [login, setLogin] = useState('')
 
     const [pass, setPass] = useState('')
 
-    const [isPassFocused, setIsPassFocused] = useState(false)
+    const { isLoading, error }: authSchema = useSelector(authDataSelector)
 
-    const authData: authSchema = useSelector(authDataSelector)
+    const loginRef: RefObject<HTMLInputElement> = useRef(null)
 
-    const { isLoading, error } = authData
+    const passRef: RefObject<HTMLInputElement> = useRef(null)
 
     const dispatch = useDispatch()
 
-    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const onKeyDown = (
+        e: React.KeyboardEvent<HTMLInputElement>,
+        inputName: InputType
+    ) => {
         if (e.keyCode === 40) {
-            setIsPassFocused(true)
+            if (inputName === InputType.LOGIN) {
+                passRef.current.focus()
+            }
+        } else if (e.keyCode === 38) {
+            loginRef.current.focus()
         }
     }
 
@@ -40,21 +57,23 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         setLogin(e.target.value)
     }
 
-    const onPassChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onPassChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setPass(e.target.value)
-    }
+    }, [])
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
         dispatch(loginThunk({ username: login, password: pass }))
     }
+
     return (
         <form className={styles.LoginForm}>
             <h2>Log in</h2>
             {error && <span>{error}</span>}
             <Input
+                ref={loginRef}
                 onKeyDown={(e) => {
-                    onKeyDown(e)
+                    onKeyDown(e, InputType.LOGIN)
                 }}
                 className={styles.inputs}
                 placeholder="login"
@@ -65,7 +84,10 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
                 autoFocus
             />
             <Input
-                isFocused={isPassFocused}
+                ref={passRef}
+                onKeyDown={(e) => {
+                    onKeyDown(e, InputType.PASS)
+                }}
                 className={styles.inputs}
                 placeholder="password"
                 type="password"
@@ -85,3 +107,4 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         </form>
     )
 }
+export default LoginForm
