@@ -13,10 +13,12 @@ export const loginThunk = createAsyncThunk(
             'http://localhost:8000/login',
             userData
         )
-        localStorage.setItem(
-            LOCAL_STORAGE_AUTH_KEY,
-            JSON.stringify(response.data)
-        )
-        thunkApi.dispatch(userActions.login(response.data))
+        if (response) {
+            localStorage.setItem(
+                LOCAL_STORAGE_AUTH_KEY,
+                JSON.stringify(response.data)
+            )
+            thunkApi.dispatch(userActions.login(response.data))
+        }
     }
 )

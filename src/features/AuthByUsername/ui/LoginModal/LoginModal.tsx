@@ -4,8 +4,9 @@ import { Modal } from 'widgets/Modal/ui/Modal'
 import { LoginFormAsync } from '../LoginForm/LoginFormAsync'
 import { type ReduxStoreWithManager } from 'app/providers/StoreProvider/types/StateSchema'
 import { authReducer } from 'features/AuthByUsername/model/slice/authSlice'
-import { useDispatch, useStore } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { Loader } from 'widgets/Loader'
+import { userIdSelector } from 'features/AuthByUsername/model/selectors/getAuthData'
 interface LoginModalProps {
     className?: string
     onClose: () => void
@@ -23,6 +24,14 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
             dispatch({ type: '@removed reducer' })
         }
     }, [store])
+
+    const userId = useSelector(userIdSelector)
+
+    useEffect(() => {
+        if (userId) {
+            onClose()
+        }
+    }, [userId])
 
     return (
         <Modal onClose={onClose}>

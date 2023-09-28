@@ -6,17 +6,14 @@ import {
     useRef,
     type RefObject,
     useCallback,
-    useEffect,
 } from 'react'
 import styles from './LoginForm.module.scss'
 import { Input, InputTheme } from '../../../../widgets/Input/Input'
 import { Button, ThemeButton } from '../../../../widgets/Button/ui/Button'
-import { useDispatch, useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginThunk } from '../../model/services/loginThunk'
 import { authDataSelector } from '../../model/selectors/getAuthData'
 import { type authSchema } from '../../model/types/authSchema'
-import { type ReduxStoreWithManager } from '../../../../app/providers/StoreProvider/types/StateSchema'
-import { authReducer } from 'features/AuthByUsername/model/slice/authSlice'
 
 interface LoginFormProps {
     className?: string
