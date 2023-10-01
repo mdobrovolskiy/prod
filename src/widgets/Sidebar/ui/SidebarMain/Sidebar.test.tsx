@@ -1,16 +1,18 @@
 import { screen, render, fireEvent } from '@testing-library/react'
-import { SideBar } from './SideBar'
+import SideBar from './SideBar'
 import { I18TestComponent } from 'helpers/i18TestComponent/I18TestComponent'
 
 describe('Button tests', () => {
     test('render test', () => {
-        render(<I18TestComponent>
-            <SideBar/>
-        </I18TestComponent>)
+        render(
+            <I18TestComponent>
+                <SideBar />
+            </I18TestComponent>
+        )
         expect(screen.getByTestId('sidebar')).toBeInTheDocument()
     })
     test('collapsed test', () => {
-        render(<SideBar/>)
+        render(<SideBar />)
 
         const sideBar = screen.getByTestId('sidebar')
 

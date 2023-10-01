@@ -1,5 +1,8 @@
-// .AppLink {
-// }
+.AppLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .secondary {
     color: var(--inverted-secondary-color);

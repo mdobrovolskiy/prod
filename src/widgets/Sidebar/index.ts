@@ -1,1 +1,2 @@
-export { SideBar } from './ui/SidebarMain/SideBar'
+import SideBar from './ui/SidebarMain/SideBar'
+export default SideBar
