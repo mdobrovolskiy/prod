@@ -26,12 +26,30 @@ export const ReducerLoader = ({
 }: ReducerLoaderProps) => {
     const dispatch = useDispatch()
     const store = useStore() as ReduxStoreWithManager
+    const storeState = store.getState()
+
+    const stateArr = Object.keys(storeState)
+
+    const reducerProps = Object.keys(reducers)
+
+    const checkIfNeedAddReducer = () => {
+        for (let i = 0; i < reducerProps.length; i++) {
+            if (!stateArr.includes(reducerProps[i])) {
+                return true
+            }
+        }
+        return false
+    }
+
     useEffect(() => {
         const reducersList = Object.entries(reducers)
-        reducersList.forEach(([key, reducer]) => {
-            store.reducerManager.add(key as StateSchemaKey, reducer)
-            dispatch({ type: `@added ${key}` })
-        })
+        if (checkIfNeedAddReducer()) {
+            reducersList.forEach(([key, reducer]) => {
+                store.reducerManager.add(key as StateSchemaKey, reducer)
+                dispatch({ type: `@added ${key}` })
+            })
+        }
+
         return () => {
             if (removeAfterUnmount) {
                 reducersList.forEach(([key, reducer]) => {

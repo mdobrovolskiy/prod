@@ -3,7 +3,7 @@ import { type Country, type Currency } from 'shared/consts/common'
 export interface Profile {
     first: string
     lastname: string
-    age: 22
+    age: number
     currency: Currency
     country: Country
     city: string
@@ -12,6 +12,7 @@ export interface Profile {
 }
 
 export interface ProfileSchema {
+    form?: Profile
     data?: Profile
     isLoading: boolean
     error?: string

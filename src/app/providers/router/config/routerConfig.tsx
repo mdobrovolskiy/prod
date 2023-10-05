@@ -3,7 +3,7 @@ import { type RouteProps } from 'react-router-dom'
 import { MainAsync } from '../../../../pages/Main/Main.async'
 import { NotFound } from 'pages/NotFound/NotFound'
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/ErrorBoundary'
-import { ProfilePageAsync } from 'pages/ProfilePage/ui/ProfilePageAsync'
+import { ProfilePageAsync } from 'pages/ProfilePage/ui/ProfilePage/ProfilePageAsync'
 
 export enum Routes {
     HOME = '/',
