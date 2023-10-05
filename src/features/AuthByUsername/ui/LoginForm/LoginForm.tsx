@@ -6,14 +6,15 @@ import {
     useRef,
     type RefObject,
     useCallback,
+    type MutableRefObject,
 } from 'react'
 import styles from './LoginForm.module.scss'
 import { Input, InputTheme } from '../../../../widgets/Input/Input'
 import { Button, ThemeButton } from '../../../../widgets/Button/ui/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginThunk } from '../../model/services/loginThunk'
-import { authDataSelector } from '../../model/selectors/getAuthData'
-import { type authSchema } from '../../model/types/authSchema'
+import { authIsLoadingSelector } from '../../model/selectors/getAuthData'
+import { authErrorSelector } from 'features/AuthByUsername/model/selectors/getAuthData'
 
 interface LoginFormProps {
     className?: string
@@ -29,11 +30,12 @@ const LoginForm: FC<LoginFormProps> = (props) => {
 
     const [pass, setPass] = useState('')
 
-    const { isLoading, error }: authSchema = useSelector(authDataSelector)
+    const isLoading = useSelector(authIsLoadingSelector)
+    const error = useSelector(authErrorSelector)
 
-    const loginRef: RefObject<HTMLInputElement> = useRef(null)
+    const loginRef = useRef<HTMLInputElement>(null)
 
-    const passRef: RefObject<HTMLInputElement> = useRef(null)
+    const passRef = useRef<HTMLInputElement>(null)
 
     const dispatch = useDispatch()
 
@@ -43,10 +45,10 @@ const LoginForm: FC<LoginFormProps> = (props) => {
     ) => {
         if (e.keyCode === 40) {
             if (inputName === InputType.LOGIN) {
-                passRef.current.focus()
+                passRef?.current?.focus()
             }
         } else if (e.keyCode === 38) {
-            loginRef.current.focus()
+            loginRef?.current?.focus()
         }
     }
 

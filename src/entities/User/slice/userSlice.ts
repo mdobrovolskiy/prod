@@ -14,11 +14,13 @@ const userSlice = createSlice({
             state.authData = action.payload
         },
         initialLoginCheck(state) {
-            const localStorageAuthData = JSON.parse(
-                localStorage.getItem(LOCAL_STORAGE_AUTH_KEY)
-            )
-            if (localStorageAuthData) {
-                state.authData = localStorageAuthData
+            const localAuthData = localStorage.getItem(LOCAL_STORAGE_AUTH_KEY)
+            let parsedAuthData
+            if (typeof localAuthData === 'string') {
+                parsedAuthData = JSON.parse(localAuthData)
+            }
+            if (parsedAuthData) {
+                state.authData = parsedAuthData
             }
         },
         logout(state) {

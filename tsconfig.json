@@ -1,27 +1,25 @@
 {
-  
-  "compilerOptions": {
-    "outDir": "./bundle/",
-    "noImplicitAny": true,
-    "module": "esnext",
-    "target": "es5",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "baseUrl": ".",
-    "paths": {
-      "*": ["./src/*"]
-    }
-  },
-  "ts-node": {
     "compilerOptions": {
-      
-      "module": "CommonJS",
-      "plugins": [{ "name": "typescript-plugin-css-modules" }]
+        "outDir": "./bundle/",
+        "noImplicitAny": true,
+        "module": "esnext",
+        "target": "es5",
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "allowUnreachableCode": false,
+        "baseUrl": ".",
+        "strict": true,
+        "paths": {
+            "*": ["./src/*"]
+        }
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS",
+            "plugins": [{ "name": "typescript-plugin-css-modules" }]
+        }
     }
-  },
-  
 }

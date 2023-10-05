@@ -9,7 +9,7 @@ import { type FC, useContext } from 'react'
 import { ThemeButton } from 'widgets/Button/ui/Button'
 
 interface ToggleThemeProps {
-  className?: string
+    className?: string
 }
 export const ToggleTheme: FC<ToggleThemeProps> = (props) => {
     const { className } = props
@@ -18,9 +18,20 @@ export const ToggleTheme: FC<ToggleThemeProps> = (props) => {
 
     const currentIcon = theme === Theme.DARK ? LightIcon : DarkIcon
 
+    const handleTheme = () => {
+        if (theme && toggleTheme) {
+            toggleTheme(theme)
+        }
+    }
+
     return (
-        <Button theme={ThemeButton.MAIN} onClick={() => { toggleTheme(theme) }}>
-            <img className={styles.image} width={36} src={currentIcon} alt="switch theme" />
+        <Button theme={ThemeButton.MAIN} onClick={handleTheme}>
+            <img
+                className={styles.image}
+                width={36}
+                src={currentIcon}
+                alt="switch theme"
+            />
         </Button>
     )
 }

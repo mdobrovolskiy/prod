@@ -1,4 +1,4 @@
 export interface authSchema {
-    isLoading: boolean
+    isLoading?: boolean
     error?: string
 }

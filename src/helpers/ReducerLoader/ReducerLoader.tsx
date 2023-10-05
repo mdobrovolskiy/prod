@@ -17,21 +17,28 @@ type LoaderReducersList = [StateSchemaKey, Reducer]
 interface ReducerLoaderProps {
     children?: ReactNode
     reducers: LoaderReducers
+    removeAfterUnmount?: boolean
 }
-export const ReducerLoader = ({ children, reducers }: ReducerLoaderProps) => {
+export const ReducerLoader = ({
+    children,
+    reducers,
+    removeAfterUnmount,
+}: ReducerLoaderProps) => {
     const dispatch = useDispatch()
     const store = useStore() as ReduxStoreWithManager
     useEffect(() => {
         const reducersList = Object.entries(reducers)
-        reducersList.forEach(([key, reducer]: LoaderReducersList) => {
-            store.reducerManager.add(key, reducer)
+        reducersList.forEach(([key, reducer]) => {
+            store.reducerManager.add(key as StateSchemaKey, reducer)
             dispatch({ type: `@added ${key}` })
         })
         return () => {
-            reducersList.forEach(([key, reducer]: LoaderReducersList) => {
-                store.reducerManager.remove(key)
-                dispatch({ type: `@removed ${key}` })
-            })
+            if (removeAfterUnmount) {
+                reducersList.forEach(([key, reducer]) => {
+                    store.reducerManager.remove(key as StateSchemaKey)
+                    dispatch({ type: `@removed ${key}` })
+                })
+            }
         }
     }, [store])
     return <>{children}</>

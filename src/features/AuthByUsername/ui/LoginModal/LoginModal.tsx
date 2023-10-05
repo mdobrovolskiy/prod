@@ -10,7 +10,7 @@ import { Routes } from 'app/providers/router/config/routerConfig'
 import {
     ReducerLoader,
     type LoaderReducers,
-} from 'entities/ReducerLoader/ReducerLoader'
+} from 'helpers/ReducerLoader/ReducerLoader'
 interface LoginModalProps {
     className?: string
     onClose: () => void
@@ -33,7 +33,7 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
     return (
         <Modal onClose={onClose}>
             <Suspense fallback={<Loader />}>
-                <ReducerLoader reducers={reducers}>
+                <ReducerLoader reducers={reducers} removeAfterUnmount>
                     <LoginFormAsync />
                 </ReducerLoader>
             </Suspense>
