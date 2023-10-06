@@ -45,22 +45,7 @@ export const ProfilePageHeader = () => {
         },
         [dispatch]
     )
-    const onCountryChange = useCallback(
-        (e: ChangeEvent<HTMLInputElement>) => {
-            dispatch(
-                profileActions.onProfileChange({ country: e.target.value })
-            )
-        },
-        [dispatch]
-    )
-    const onCurrencyChange = useCallback(
-        (e: ChangeEvent<HTMLInputElement>) => {
-            dispatch(
-                profileActions.onProfileChange({ currency: e.target.value })
-            )
-        },
-        [dispatch]
-    )
+
     const onCityChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
             dispatch(profileActions.onProfileChange({ city: e.target.value }))
@@ -95,7 +80,22 @@ export const ProfilePageHeader = () => {
         },
         [dispatch]
     )
-
+    const onCountryChange = useCallback(
+        (e: ChangeEvent<HTMLSelectElement>) => {
+            dispatch(
+                profileActions.onProfileChange({ country: e.target.value })
+            )
+        },
+        [dispatch]
+    )
+    const onCurrencyChange = useCallback(
+        (e: ChangeEvent<HTMLSelectElement>) => {
+            dispatch(
+                profileActions.onProfileChange({ currency: e.target.value })
+            )
+        },
+        [dispatch]
+    )
     return (
         <>
             <div className={styles.top}>

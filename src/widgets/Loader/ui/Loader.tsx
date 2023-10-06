@@ -2,12 +2,12 @@ import { type FC } from 'react'
 import './Loader.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
 interface LoaderProps {
-  className?: string
+    className?: string
 }
 export const Loader: FC<LoaderProps> = (props) => {
     const { className } = props
     return (
-        <div className={classNames('', {}, [])}>
+        <div className={classNames('main-loader', {}, [])}>
             <div className="loader">
                 <div className="bar1"></div>
                 <div className="bar2"></div>

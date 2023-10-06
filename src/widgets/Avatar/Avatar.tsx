@@ -1,4 +1,4 @@
-import { type CSSProperties, type FC } from 'react'
+import { memo, type CSSProperties, type FC } from 'react'
 import cls from './Avatar.module.scss'
 interface AvatarProps {
     className?: string
@@ -6,7 +6,7 @@ interface AvatarProps {
     alt: string
     size?: number
 }
-export const Avatar: FC<AvatarProps> = (props) => {
+const Avatar_: FC<AvatarProps> = (props) => {
     const { className, alt, src, size } = props
 
     const styles: CSSProperties = {
@@ -16,3 +16,4 @@ export const Avatar: FC<AvatarProps> = (props) => {
 
     return <img className={cls.main} style={styles} src={src} alt={alt} />
 }
+export const Avatar = memo(Avatar_)

@@ -1,0 +1,13 @@
+.main {
+    color: var(--primary-color);
+    background: none;
+    border: 1px solid var(--primary-color);
+
+    &:focus {
+        outline: none;
+    }
+
+    option {
+        background-color: var(--bg-color);
+    }
+}

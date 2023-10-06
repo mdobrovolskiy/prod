@@ -2,10 +2,12 @@ import { type ChangeEvent, type FC } from 'react'
 import styles from './ProfileCard.module.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { type Profile } from 'entities/Profile/model/types/profile'
-import { Input } from 'widgets/Input/Input'
 import { Loader } from 'widgets/Loader'
 import { ProfileItem } from '../ProfileItem/ProfileItem'
 import { Avatar } from 'widgets/Avatar/Avatar'
+import { countryOptions } from 'entities/Country/model/options/countryOptions'
+import { CurrenctSwitch } from 'entities/Currency/ui/CurrencySwitch/CurrenctSwitch'
+import { CountrySelect } from 'entities/Country/ui/CountrySelect'
 
 interface ProfileCardProps {
     className?: string
@@ -15,8 +17,8 @@ interface ProfileCardProps {
     onLastnameChange?: (e: ChangeEvent<HTMLInputElement>) => void
     onFirstnameChange?: (e: ChangeEvent<HTMLInputElement>) => void
     onCityChange?: (e: ChangeEvent<HTMLInputElement>) => void
-    onCountryChange?: (e: ChangeEvent<HTMLInputElement>) => void
-    onCurrencyChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    onCountryChange?: (e: ChangeEvent<HTMLSelectElement>) => void
+    onCurrencyChange?: (e: ChangeEvent<HTMLSelectElement>) => void
     onAgeChange?: (e: ChangeEvent<HTMLInputElement>) => void
 
     onAvatarChange?: (e: ChangeEvent<HTMLInputElement>) => void
@@ -41,9 +43,10 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
         onUsernameChange,
         isLoading,
     } = props
+
     if (isLoading) {
         return (
-            <div className={classNames(styles.ProfileCard, {}, [])}>
+            <div className={classNames(styles.Loader, {}, [])}>
                 <Loader />
             </div>
         )
@@ -79,18 +82,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                 readonly={readonly}
                 onChange={onCityChange}
             />
-            <ProfileItem
-                name="Country"
-                value={data?.country}
-                readonly={readonly}
-                onChange={onCountryChange}
-            />
-            <ProfileItem
-                name="Currency"
-                value={data?.currency}
-                readonly={readonly}
-                onChange={onCurrencyChange}
-            />
+
             <ProfileItem
                 name="Age"
                 value={data?.age}
@@ -109,6 +101,24 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                 readonly={readonly}
                 onChange={onUsernameChange}
             />
+            <div>
+                Country:
+                <CountrySelect
+                    className={styles.curr}
+                    value={data?.country}
+                    onChange={onCountryChange}
+                    readonly={readonly}
+                />
+            </div>
+            <div>
+                Currency:
+                <CurrenctSwitch
+                    className={styles.curr}
+                    value={data?.currency}
+                    onChange={onCurrencyChange}
+                    readonly={readonly}
+                />
+            </div>
         </div>
     )
 }

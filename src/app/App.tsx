@@ -12,6 +12,7 @@ const App = (): JSX.Element => {
     useEffect(() => {
         dispatch(userActions.initialLoginCheck())
     }, [dispatch])
+    console.log(123)
 
     return (
         <div id="app" className={`App ${theme}`}>

@@ -4,6 +4,8 @@ import { MainAsync } from '../../../../pages/Main/Main.async'
 import { NotFound } from 'pages/NotFound/NotFound'
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/ErrorBoundary'
 import { ProfilePageAsync } from 'pages/ProfilePage/ui/ProfilePage/ProfilePageAsync'
+import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage'
+import PrivateRoute from '../ui/PrivateRoute'
 
 export enum Routes {
     HOME = '/',
@@ -11,7 +13,10 @@ export enum Routes {
     NOTFOUND = '*',
     PROFILE = '/profile',
 }
-export const routerConfig: Record<Routes, RouteProps> = {
+
+type RouterRecord = Record<Routes, RouteProps>
+
+export const routerConfig: RouterRecord = {
     [Routes.HOME]: {
         element: (
             <ErrorBoundary>
@@ -30,9 +35,11 @@ export const routerConfig: Record<Routes, RouteProps> = {
     },
     [Routes.PROFILE]: {
         element: (
-            <ErrorBoundary>
-                <ProfilePageAsync />
-            </ErrorBoundary>
+            <PrivateRoute>
+                <ErrorBoundary>
+                    <ProfilePageAsync />
+                </ErrorBoundary>
+            </PrivateRoute>
         ),
         path: Routes.PROFILE,
     },

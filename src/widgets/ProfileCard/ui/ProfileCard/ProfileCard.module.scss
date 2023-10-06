@@ -8,3 +8,16 @@
 .avatar {
     margin: 20px;
 }
+
+.curr {
+    margin-left: 10px;
+}
+
+.Loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+}

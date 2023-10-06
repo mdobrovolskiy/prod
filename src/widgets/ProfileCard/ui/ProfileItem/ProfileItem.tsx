@@ -1,27 +1,52 @@
-import { type FC, type ChangeEvent } from 'react'
+import { type FC, type ChangeEvent, memo } from 'react'
 import styles from './ProfileItem.module.scss'
-import { classNames } from 'shared/lib/classNames/classNames'
 import { Input } from 'widgets/Input/Input'
-import { type Profile } from 'entities/Profile/model/types/profile'
+import { type OptionsSelect, Select } from 'widgets/Select/Select'
+
+type SelectType = (e: ChangeEvent<HTMLSelectElement>) => void
+type InputType = (e: ChangeEvent<HTMLInputElement>) => void
+
 interface ProfileItemProps {
     className?: string
     value?: string | number
     name: string
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    onChange?: InputType
     readonly?: boolean
+    options?: OptionsSelect[]
+    onChangeSelect?: SelectType
 }
-export const ProfileItem: FC<ProfileItemProps> = (props) => {
-    const { className, onChange, value, readonly, name } = props
+const ProfileItem_: FC<ProfileItemProps> = (props) => {
+    const {
+        className,
+        onChange,
+        value,
+        readonly,
+        name,
+        options,
+        onChangeSelect,
+    } = props
     return (
         <div className={styles.stat}>
             {name}:{' '}
-            <Input
-                onChange={(e) => {
-                    onChange?.(e)
-                }}
-                value={value}
-                readOnly={readonly}
-            />
+            {name === 'Currency' || name === 'Country' ? (
+                <Select
+                    readonly={readonly}
+                    onChange={onChangeSelect}
+                    value={value}
+                    className={styles.select}
+                    options={options}
+                />
+            ) : (
+                <Input
+                    className={styles.reset}
+                    onChange={(e) => {
+                        onChange?.(e)
+                    }}
+                    value={value}
+                    readOnly={readonly}
+                />
+            )}
         </div>
     )
 }
+export const ProfileItem = memo(ProfileItem_)
