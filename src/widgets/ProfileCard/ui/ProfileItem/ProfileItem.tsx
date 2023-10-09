@@ -38,6 +38,7 @@ const ProfileItem_: FC<ProfileItemProps> = (props) => {
                 />
             ) : (
                 <Input
+                    maxLength={10}
                     className={styles.reset}
                     onChange={(e) => {
                         onChange?.(e)

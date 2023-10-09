@@ -1,17 +1,19 @@
-import { Heo } from 'pages/Heo'
 import { type RouteProps } from 'react-router-dom'
 import { MainAsync } from '../../../../pages/Main/Main.async'
 import { NotFound } from 'pages/NotFound/NotFound'
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/ErrorBoundary'
 import { ProfilePageAsync } from 'pages/ProfilePage/ui/ProfilePage/ProfilePageAsync'
 import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage'
-import PrivateRoute from '../ui/PrivateRoute'
+import PrivateRoute from './PrivateRoute'
+import { ArticlesPage } from 'pages/ArticlesPage/ArticlesPage'
+import { ArticlesDetailsPage } from 'pages/ArticleDetailsPage/ArticlesDetailsPage'
 
 export enum Routes {
     HOME = '/',
-    HEO = 'heo',
-    NOTFOUND = '*',
     PROFILE = '/profile',
+    ARTICLES = '/articles',
+    ARTICLES_DETAILS = '/articles/:id',
+    NOTFOUND = '*',
 }
 
 type RouterRecord = Record<Routes, RouteProps>
@@ -24,10 +26,6 @@ export const routerConfig: RouterRecord = {
             </ErrorBoundary>
         ),
         path: Routes.HOME,
-    },
-    [Routes.HEO]: {
-        element: <Heo />,
-        path: Routes.HEO,
     },
     [Routes.NOTFOUND]: {
         element: <NotFound />,
@@ -42,5 +40,25 @@ export const routerConfig: RouterRecord = {
             </PrivateRoute>
         ),
         path: Routes.PROFILE,
+    },
+    [Routes.ARTICLES]: {
+        element: (
+            <PrivateRoute>
+                <ErrorBoundary>
+                    <ArticlesPage />
+                </ErrorBoundary>
+            </PrivateRoute>
+        ),
+        path: Routes.ARTICLES,
+    },
+    [Routes.ARTICLES_DETAILS]: {
+        element: (
+            <PrivateRoute>
+                <ErrorBoundary>
+                    <ArticlesDetailsPage />
+                </ErrorBoundary>
+            </PrivateRoute>
+        ),
+        path: Routes.ARTICLES_DETAILS,
     },
 }

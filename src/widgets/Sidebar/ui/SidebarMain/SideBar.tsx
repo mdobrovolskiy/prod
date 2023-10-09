@@ -8,12 +8,49 @@ import { ThemeButton } from 'widgets/Button/ui/Button'
 import { useTranslation } from 'react-i18next'
 import HomeIcon from 'helpers/assets/HomeIcon.svg'
 import SideBarItem from '../SideBarItem/SideBarItem'
+import { Routes } from 'app/providers/router/config/routerConfig'
+import { useSelector } from 'react-redux'
+import { getUserId } from 'entities/User/selectors/getUserId'
 interface SideBarProps {
     className?: string
 }
+
 const SideBar: FC<SideBarProps> = (props) => {
     const { className } = props
     const [collapsed, setCollapsed] = useState(false)
+
+    const isAuth = useSelector(getUserId)
+
+    const appNav = useMemo(() => {
+        if (isAuth) {
+            return [
+                {
+                    path: Routes.HOME,
+                    name: 'Home',
+                    Icon: <HomeIcon width="30" />,
+                },
+
+                {
+                    path: Routes.PROFILE,
+                    name: 'Profile',
+                    Icon: <HomeIcon width="30" />,
+                },
+                {
+                    path: Routes.ARTICLES,
+                    name: 'Articles',
+                    Icon: <HomeIcon width="30" />,
+                },
+            ]
+        } else {
+            return [
+                {
+                    path: Routes.HOME,
+                    name: 'Home',
+                    Icon: <HomeIcon width="30" />,
+                },
+            ]
+        }
+    }, [isAuth])
 
     const { t } = useTranslation()
 
@@ -21,25 +58,6 @@ const SideBar: FC<SideBarProps> = (props) => {
         setCollapsed((prev) => !prev)
     }
 
-    const appNav = useMemo(() => {
-        return [
-            {
-                path: '/',
-                name: 'Home',
-                Icon: <HomeIcon width="30" />,
-            },
-            {
-                path: '/about',
-                name: 'About',
-                Icon: <HomeIcon width="30" />,
-            },
-            {
-                path: '/profile',
-                name: 'Profile',
-                Icon: <HomeIcon width="30" />,
-            },
-        ]
-    }, [])
     return (
         <div
             data-testid="sidebar"

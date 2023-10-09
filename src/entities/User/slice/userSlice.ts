@@ -4,6 +4,7 @@ import { LOCAL_STORAGE_AUTH_KEY } from '../../../shared/consts/localStorage'
 
 const initialState: UserSchema = {
     authData: {},
+    initiated: false,
 }
 
 const userSlice = createSlice({
@@ -22,6 +23,7 @@ const userSlice = createSlice({
             if (parsedAuthData) {
                 state.authData = parsedAuthData
             }
+            state.initiated = true
         },
         logout(state) {
             state.authData = {}

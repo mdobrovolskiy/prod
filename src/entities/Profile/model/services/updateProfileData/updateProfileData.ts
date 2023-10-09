@@ -1,12 +1,35 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { type Profile } from 'entities/Profile/model/types/profile'
+import axios, { AxiosError } from 'axios'
+import { getProfileFormData } from 'entities/Profile/model/selectors/getProfileFormData'
+import {
+    type ProfileError,
+    profileDataValidator,
+} from 'entities/Profile/model/validate/ProfileDataValidator'
 
 export const updateProfileData = createAsyncThunk(
     'profile/updateProfileData',
-    async (data: Profile, thunkApi) => {
-        const { extra, dispatch } = thunkApi
+    async (_, thunkApi) => {
+        const { extra, rejectWithValue, getState } = thunkApi
         // @ts-expect-error
-        const res = await extra.api.put('/profile', data)
-        return res.data
+        const data = getProfileFormData(getState())
+        console.log(2131231)
+        let errors: ProfileError[] = []
+        if (data) {
+            errors = profileDataValidator(data)
+        }
+        if (errors.length) {
+            return rejectWithValue(errors)
+        }
+        try {
+            // @ts-expect-error
+            const res = await extra.api.put('/profile', data)
+            return res.data
+        } catch (err) {
+            if (axios.isAxiosError(err)) {
+                return rejectWithValue(err.message)
+            } else {
+                return rejectWithValue('Unexpected error')
+            }
+        }
     }
 )

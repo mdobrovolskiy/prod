@@ -8,11 +8,12 @@ import { Avatar } from 'widgets/Avatar/Avatar'
 import { countryOptions } from 'entities/Country/model/options/countryOptions'
 import { CurrenctSwitch } from 'entities/Currency/ui/CurrencySwitch/CurrenctSwitch'
 import { CountrySelect } from 'entities/Country/ui/CountrySelect'
+import { type ProfileError } from 'entities/Profile/model/validate/ProfileDataValidator'
 
 interface ProfileCardProps {
     className?: string
     data?: Profile
-    error?: string
+    error?: string | ProfileError[]
     readonly?: boolean
     onLastnameChange?: (e: ChangeEvent<HTMLInputElement>) => void
     onFirstnameChange?: (e: ChangeEvent<HTMLInputElement>) => void
@@ -51,16 +52,15 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
             </div>
         )
     }
-    if (error) {
-        return (
-            <div className={classNames(styles.ProfileCard, {}, [])}>
-                <h1>{error}</h1>
-            </div>
-        )
-    }
 
     return (
         <div className={classNames(styles.ProfileCard, {}, [])}>
+            {error &&
+                (Array.isArray(error) ? (
+                    error.map((err) => <h2 key={err}>{err}</h2>)
+                ) : (
+                    <h1>{error}</h1>
+                ))}
             <div className={styles.avatar}>
                 <Avatar src={data?.avatar} alt="Avatar" size={100} />
             </div>

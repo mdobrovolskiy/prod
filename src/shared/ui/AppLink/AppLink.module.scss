@@ -2,10 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--primary-color);
 }
 
 .secondary {
-    color: var(--inverted-secondary-color);
+    color: var(--secondary-color);
 }
 
 .primary {

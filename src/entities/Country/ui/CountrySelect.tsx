@@ -1,5 +1,4 @@
 import { memo, type ChangeEvent, type FC } from 'react'
-import styles from './CountrySelect.module.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { countryOptions } from '../model/options/countryOptions'
 import { Select } from 'widgets/Select/Select'
@@ -16,7 +15,7 @@ const CountrySelect_: FC<CountrySelectProps> = (props) => {
             readonly={readonly}
             onChange={onChange}
             value={value}
-            className={classNames(styles.S, {}, [className])}
+            className={classNames('', {}, [className])}
             options={countryOptions}
         />
     )

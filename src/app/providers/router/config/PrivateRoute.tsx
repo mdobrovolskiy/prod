@@ -1,6 +1,6 @@
 import { type ReactNode, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { routerConfig } from '../config/routerConfig'
+import { routerConfig } from './routerConfig'
 import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage'
 import { useSelector } from 'react-redux'
 import { getUserId } from 'entities/User/selectors/getUserId'

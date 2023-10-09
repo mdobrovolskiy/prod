@@ -1,4 +1,9 @@
-import { useCallback, type FC, type ChangeEvent } from 'react'
+import {
+    useCallback,
+    type ChangeEvent,
+    type KeyboardEvent,
+    useEffect,
+} from 'react'
 import styles from './ProfilePageHeader.module.scss'
 import { Button } from 'widgets/Button'
 import { ThemeButton } from 'widgets/Button/ui/Button'
@@ -29,8 +34,7 @@ export const ProfilePageHeader = () => {
 
     const handleConfirmEdit = useCallback(() => {
         if (clientData) {
-            dispatch(updateProfileData(clientData))
-            dispatch(profileActions.handleReadonly(true))
+            dispatch(updateProfileData())
         }
     }, [clientData, dispatch])
 
@@ -96,17 +100,44 @@ export const ProfilePageHeader = () => {
         },
         [dispatch]
     )
+
+    const onKeyDown = (e: KeyboardEvent) => {
+        const { key } = e
+        if (key === 'Enter') {
+            handleConfirmEdit()
+        } else if (key === 'Escape') {
+            handleCancelEdit()
+        }
+    }
+    useEffect(() => {
+        if (!readonly) {
+            document.addEventListener('keydown', (e) => {
+                onKeyDown(e as any)
+            })
+        }
+        return () => {
+            document.removeEventListener('keydown', (e) => {
+                onKeyDown(e as any)
+            })
+        }
+    }, [readonly])
+
     return (
         <>
             <div className={styles.top}>
                 <h2>Profile</h2>
                 {readonly ? (
-                    <Button onClick={openEdit} theme={ThemeButton.MAIN}>
+                    <Button
+                        disabled={isLoading}
+                        onClick={openEdit}
+                        theme={ThemeButton.MAIN}
+                    >
                         Edit
                     </Button>
                 ) : (
                     <div className={styles.buttons}>
                         <Button
+                            disabled={isLoading}
                             className={styles.cancel}
                             onClick={handleCancelEdit}
                             theme={ThemeButton.MAIN}
@@ -114,6 +145,7 @@ export const ProfilePageHeader = () => {
                             Cancel
                         </Button>
                         <Button
+                            disabled={isLoading}
                             onClick={handleConfirmEdit}
                             theme={ThemeButton.MAIN}
                         >

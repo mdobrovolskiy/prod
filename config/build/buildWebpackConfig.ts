@@ -5,7 +5,7 @@ import { buildResolvers } from './buildResolvers'
 import { type BuildOptions } from './types/config'
 import { buildDevServer } from './buildDevServer'
 
-export function buildWebpackConfig (
+export function buildWebpackConfig(
     options: BuildOptions
 ): webpack.Configuration {
     return {
@@ -14,16 +14,17 @@ export function buildWebpackConfig (
 
         entry: options.paths.entry,
         module: {
-            rules: buildLoaders(options)
+            rules: buildLoaders(options),
         },
         resolve: buildResolvers(options),
         output: {
             filename: '[name].[contenthash].js',
             chunkFilename: 'chunk.[contenthash].js',
             path: options.paths.build,
-            clean: true
+            clean: true,
+            publicPath: '/',
         },
         plugins: buildPlugins(options),
-        devServer: options.isDev ? buildDevServer(options) : undefined
+        devServer: options.isDev ? buildDevServer(options) : undefined,
     }
 }

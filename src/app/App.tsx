@@ -3,25 +3,26 @@ import { ThemeContext } from 'app/providers/ThemeProvider/ThemeContext'
 import AppRouter from 'app/providers/router'
 import Navbar from 'widgets/Navbar/ui/Navbar'
 import SideBar from 'widgets/Sidebar'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userActions } from 'entities/User/slice/userSlice'
-const App = (): JSX.Element => {
+import { getUserInitiated } from 'entities/User/selectors/getUserInitiated'
+
+const App = () => {
     const { theme } = useContext(ThemeContext)
+
+    const initiated = useSelector(getUserInitiated)
 
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(userActions.initialLoginCheck())
     }, [dispatch])
-    console.log(123)
 
     return (
         <div id="app" className={`App ${theme}`}>
             <Navbar />
-
             <div className="content-page">
                 <SideBar />
-
-                <AppRouter />
+                {initiated && <AppRouter />}
             </div>
         </div>
     )

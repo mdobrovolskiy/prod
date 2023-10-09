@@ -2,6 +2,7 @@ import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { fetchProfileData } from 'entities/Profile/model/services/fetchProfileData/fetchProfileData'
 import { type ProfileSchema } from 'entities/Profile/model/types/profile'
 import { updateProfileData } from 'entities/Profile/model/services/updateProfileData/updateProfileData'
+import { type ProfileError } from '../validate/ProfileDataValidator'
 
 const initialState: ProfileSchema = {
     readonly: true,
@@ -23,6 +24,7 @@ const profileSlice = createSlice({
         },
         onProfileChangeCancel(state) {
             state.form = state.data
+            state.error = undefined
         },
     },
     extraReducers(builder) {
@@ -43,13 +45,15 @@ const profileSlice = createSlice({
             state.isLoading = true
             state.error = undefined
         })
-        builder.addCase(updateProfileData.rejected, (state) => {
+        builder.addCase(updateProfileData.rejected, (state, action) => {
             state.isLoading = false
-            state.error = 'Error updating data'
+            state.error = action.payload as ProfileError[]
         })
         builder.addCase(updateProfileData.fulfilled, (state) => {
             state.isLoading = false
             state.error = undefined
+            state.data = state.form
+            state.readonly = true
         })
     },
 })
