@@ -12,6 +12,7 @@ import { getArticleError } from 'entities/Article/model/selectors/getArticleErro
 import { Loader } from 'widgets/Loader'
 import { getArticleData } from 'entities/Article/model/selectors/getArticleData'
 import { Text, ThemeText } from 'widgets/Text/Text'
+import { ArticleDetails } from 'entities/Article/ui/ArticleDetails/ArticleDetails'
 interface ArticlesDetailsPageProps {
     className?: string
 }
@@ -32,7 +33,6 @@ export const ArticlesDetailsPage: FC<ArticlesDetailsPageProps> = (props) => {
             dispatch(fetchArticleById(id))
         }
     }, [id])
-    console.log(data)
 
     if (isLoading) {
         return <Loader />
@@ -44,20 +44,7 @@ export const ArticlesDetailsPage: FC<ArticlesDetailsPageProps> = (props) => {
 
     return (
         <ReducerLoader reducers={reducers}>
-            <div className={classNames(styles.ArticleDetailsPage, {}, [])}>
-                <div className={styles.avatarBlock}>
-                    <div className={styles.avatarWrapper}>
-                        <img src={data?.img} alt="" />
-                    </div>
-                </div>
-                <div className={styles.title}>
-                    <Text text={data?.title} type={'h1'} />
-                </div>
-                <div className={styles.subtitle}>{data?.subtitle}</div>
-                <div className={styles.subtitle}>{data?.createdAt}</div>
-                <div className={styles.subtitle}>{data?.views}</div>
-                <div className={styles.subtitle}>{data?.type}</div>
-            </div>
+            <ArticleDetails data={data} id={id} />
         </ReducerLoader>
     )
 }

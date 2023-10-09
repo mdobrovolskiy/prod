@@ -18,6 +18,6 @@
 }
 
 .page-wrapper {
-    flex-grow: 1;
+    width: calc(100vw - var(--sidebar-width) - 20px);
     padding: 20px;
 }

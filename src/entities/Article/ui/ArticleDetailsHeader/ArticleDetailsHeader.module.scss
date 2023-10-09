@@ -1,0 +1,16 @@
+.avatarBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.avatarWrapper {
+    img {
+        width: 200px;
+    }
+}
+
+.title {
+    font-weight: 500;
+}

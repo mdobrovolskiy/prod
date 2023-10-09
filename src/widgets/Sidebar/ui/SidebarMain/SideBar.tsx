@@ -59,30 +59,32 @@ const SideBar: FC<SideBarProps> = (props) => {
     }
 
     return (
-        <div
-            data-testid="sidebar"
-            className={classNames(
-                styles.SideBar,
-                { [styles.collapsed]: collapsed },
-                [className]
-            )}
-        >
-            <Button onClick={handleCollapsed}>sdfdsafs</Button>
-            <div className={styles.navigation}>
-                {appNav.map((obj) => (
-                    <SideBarItem
-                        collapsed={collapsed}
-                        key={obj.path}
-                        path={obj.path}
-                        name={obj.name}
-                        Icon={obj.Icon}
-                    />
-                ))}
-            </div>
-            <div className={styles.switchers}>
-                <ToggleTheme />
+        <div className={styles.sideBarFill}>
+            <div
+                data-testid="sidebar"
+                className={classNames(
+                    styles.SideBar,
+                    { [styles.collapsed]: collapsed },
+                    [className]
+                )}
+            >
+                <Button onClick={handleCollapsed}>sdfdsafs</Button>
+                <div className={styles.navigation}>
+                    {appNav.map((obj) => (
+                        <SideBarItem
+                            collapsed={collapsed}
+                            key={obj.path}
+                            path={obj.path}
+                            name={obj.name}
+                            Icon={obj.Icon}
+                        />
+                    ))}
+                </div>
+                <div className={styles.switchers}>
+                    <ToggleTheme />
 
-                <ToggleLanguage />
+                    <ToggleLanguage />
+                </div>
             </div>
         </div>
     )

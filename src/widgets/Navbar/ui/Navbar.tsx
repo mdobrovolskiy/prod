@@ -32,16 +32,18 @@ const Navbar = ({ className }: NavbarProps) => {
         }
     }
     return (
-        <div className={classNames(styles.Navbar, {}, [className])}>
-            <div className={styles.linkWrapper}>
-                <AppLink to="/" theme={AppLinkTheme.SECONDARY}></AppLink>
-                <AppLink to="/heo" theme={AppLinkTheme.PRIMARY}>
-                    HEO
-                </AppLink>
-                <Button onClick={handleClick} theme={ThemeButton.MAIN}>
-                    {userId ? 'Log out' : 'Log in'}
-                </Button>
-                {loginOpened && <LoginModal onClose={closeModal} />}
+        <div className={styles.navBarFill}>
+            <div className={classNames(styles.Navbar, {}, [className])}>
+                <div className={styles.linkWrapper}>
+                    <AppLink to="/" theme={AppLinkTheme.SECONDARY}></AppLink>
+                    <AppLink to="/heo" theme={AppLinkTheme.PRIMARY}>
+                        HEO
+                    </AppLink>
+                    <Button onClick={handleClick} theme={ThemeButton.MAIN}>
+                        {userId ? 'Log out' : 'Log in'}
+                    </Button>
+                    {loginOpened && <LoginModal onClose={closeModal} />}
+                </div>
             </div>
         </div>
     )
