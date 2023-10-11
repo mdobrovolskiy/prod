@@ -1,11 +1,11 @@
 .App.black {
     --bg-color: #000;
     --inverted-bg-color: #034f6d;
-    --primary-color: #fcf5bd;
+    --primary-color: #fff;
     --secondary-color: rgb(255 255 255);
     --inverted-primary-color: #fdfdfd;
     --inverted-secondary-color: #e6e6e6;
-    --layout-bg: rgb(82 81 81);
+    --layout-bg: #00101f;
 
     // redesigned
     --dark-bg-redesigned: #090f11;
@@ -26,7 +26,9 @@
     --code-bg: #1212a1;
 
     // card
-    --card-bg: rgb(39 104 243);
+    --card-bg: #002446;
+
+    // --card-bg: rgb(39 104 243);
 
     // listbox
     --listbox-bg: #0d0d6b;

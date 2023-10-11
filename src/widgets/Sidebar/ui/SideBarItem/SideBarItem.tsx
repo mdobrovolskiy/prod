@@ -7,19 +7,25 @@ interface SideBarItemProps {
     className?: string
     path: string
     name: string
-    Icon: ReactNode
-    collapsed: boolean
 }
 const SideBarItem: FC<SideBarItemProps> = (props) => {
-    const { className, path, name, Icon, collapsed } = props
+    const { className, path, name } = props
+
     return (
         <Button className={classNames(styles.SideBarItem, {}, [])}>
+            <img
+                className={styles.icon}
+                width="24"
+                height="24"
+                src="https://img.icons8.com/sf-regular/48/FFFFFF/chevron-right.png"
+                alt="chevron-right"
+            />
             <AppLink
                 to={path}
-                theme={AppLinkTheme.PRIMARY}
+                theme={AppLinkTheme.SECONDARY}
                 className={styles.link}
             >
-                {!collapsed && name} {Icon}
+                {name}
             </AppLink>
         </Button>
     )

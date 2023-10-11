@@ -2,6 +2,7 @@ import { type ArticleListSchema } from './../types/articleListTypes'
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { fetchArticles } from 'entities/Article/ui/ArticleList/model/services/fetchArticles'
+import { LOCAL_STORAGE_VIEW_KEY } from 'shared/consts/localStorage'
 
 const initialState: ArticleListSchema = {
     isLoading: false,
@@ -16,6 +17,15 @@ const articleListSlice = createSlice({
     reducers: {
         setIsSmallSize(state, action) {
             state.smallCards = action.payload
+            localStorage.setItem(LOCAL_STORAGE_VIEW_KEY, action.payload)
+        },
+        initialSizeCheck(state) {
+            const isSmallViewSelected = JSON.parse(
+                localStorage.getItem(LOCAL_STORAGE_VIEW_KEY) || ''
+            )
+            if (!isSmallViewSelected) {
+                state.smallCards = false
+            }
         },
     },
     extraReducers(builder) {

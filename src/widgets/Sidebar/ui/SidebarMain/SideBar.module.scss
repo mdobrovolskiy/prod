@@ -4,6 +4,7 @@
     background-color: var(--layout-bg);
     transition: width 0.3s;
     position: fixed;
+    padding-top: 80px;
 }
 
 .collapsed {
@@ -30,9 +31,7 @@
 .navigation {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
+    gap: 20px;
 }
 
 .sideBarFill {

@@ -31,11 +31,19 @@ const Navbar = ({ className }: NavbarProps) => {
             setLoginOpened(true)
         }
     }
+
+    const theme = userId ? ThemeButton.BLACK : ThemeButton.MAIN
+
     return (
         <div className={styles.navBarFill}>
             <div className={classNames(styles.Navbar, {}, [className])}>
+                <img
+                    className={styles.logo}
+                    src="https://cdn-icons-png.flaticon.com/512/5773/5773759.png"
+                    alt=""
+                />
                 <div className={styles.linkWrapper}>
-                    <Button onClick={handleClick} theme={ThemeButton.MAIN}>
+                    <Button onClick={handleClick} theme={theme}>
                         {userId ? 'Log out' : 'Log in'}
                     </Button>
                     {loginOpened && <LoginModal onClose={closeModal} />}

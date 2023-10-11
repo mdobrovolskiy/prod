@@ -22,6 +22,9 @@ import { Loader } from 'widgets/Loader'
 interface ArticleListProps {
     className?: string
 }
+const reducer = {
+    articleListReducer,
+}
 
 export const ArticleList: FC<ArticleListProps> = (props) => {
     const { className } = props
@@ -45,14 +48,16 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
         dispatch(articleListActions.setIsSmallSize(false))
     }
 
-    console.log(articles)
+    useEffect(() => {
+        dispatch(articleListActions.initialSizeCheck())
+    }, [])
 
     if (isLoading) {
         return <Loader />
     }
 
     return (
-        <>
+        <ReducerLoader reducers={reducer}>
             <div className={styles.view}>
                 <Button onClick={onSmallSize}>SMALL</Button>
                 <Button onClick={onBigSize}>BIG</Button>
@@ -66,6 +71,6 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
                     />
                 ))}
             </div>
-        </>
+        </ReducerLoader>
     )
 }

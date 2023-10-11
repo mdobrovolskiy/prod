@@ -13,18 +13,13 @@ import { articleListReducer } from 'entities/Article/ui/ArticleList/model/slice/
 interface ArticlesPageProps {
     className?: string
 }
-const reducers = {
-    articleListReducer,
-}
 
 export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     const { className } = props
 
     return (
-        <ReducerLoader reducers={reducers}>
-            <div className={classNames(styles.ArticlePage, {}, [])}>
-                <ArticleList />
-            </div>
-        </ReducerLoader>
+        <div className={classNames(styles.ArticlePage, {}, [])}>
+            <ArticleList />
+        </div>
     )
 }

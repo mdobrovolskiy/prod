@@ -75,7 +75,6 @@ export const ArticleCard: FC<ArticleCardProps> = (props) => {
             <div className={classNames(styles.ArticleCardSmall, {}, [])}>
                 <div className={styles.card}>
                     <div className={styles.topCard}>
-                        <span className={styles.createdAt}>{createdAt}</span>
                         <img src={img} alt="" />
                     </div>
                     <div className={styles.bottomCard}>

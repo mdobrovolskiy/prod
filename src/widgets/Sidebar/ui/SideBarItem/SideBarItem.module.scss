@@ -1,9 +1,15 @@
 .SideBarItem {
     background: none;
+    width: max-content;
+    margin-left: 10px;
 }
 
 .link {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.icon {
+    margin-right: 5px;
 }

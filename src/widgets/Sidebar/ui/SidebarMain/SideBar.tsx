@@ -32,18 +32,15 @@ const SideBar: FC<SideBarProps> = (props) => {
                 {
                     path: Routes.HOME,
                     name: 'Home',
-                    Icon: <HomeIcon width="30" />,
                 },
 
                 {
                     path: `${clientName}`,
                     name: 'Profile',
-                    Icon: <HomeIcon width="30" />,
                 },
                 {
                     path: Routes.ARTICLES,
                     name: 'Articles',
-                    Icon: <HomeIcon width="30" />,
                 },
             ]
         } else {
@@ -51,13 +48,10 @@ const SideBar: FC<SideBarProps> = (props) => {
                 {
                     path: Routes.HOME,
                     name: 'Home',
-                    Icon: <HomeIcon width="30" />,
                 },
             ]
         }
     }, [isAuth, clientName])
-
-    const { t } = useTranslation()
 
     const handleCollapsed = () => {
         setCollapsed((prev) => !prev)
@@ -73,22 +67,17 @@ const SideBar: FC<SideBarProps> = (props) => {
                     [className]
                 )}
             >
-                <Button onClick={handleCollapsed}>sdfdsafs</Button>
                 <div className={styles.navigation}>
                     {appNav.map((obj) => (
                         <SideBarItem
-                            collapsed={collapsed}
                             key={obj.path}
                             path={obj.path}
                             name={obj.name}
-                            Icon={obj.Icon}
                         />
                     ))}
                 </div>
                 <div className={styles.switchers}>
                     <ToggleTheme />
-
-                    <ToggleLanguage />
                 </div>
             </div>
         </div>
