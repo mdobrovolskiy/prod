@@ -11,6 +11,7 @@ import SideBarItem from '../SideBarItem/SideBarItem'
 import { Routes } from 'app/providers/router/config/routerConfig'
 import { useSelector } from 'react-redux'
 import { getUserId } from 'entities/User/selectors/getUserId'
+import { getUserName } from 'features/AuthByUsername/model/selectors/getAuthData'
 interface SideBarProps {
     className?: string
 }
@@ -20,6 +21,10 @@ const SideBar: FC<SideBarProps> = (props) => {
     const [collapsed, setCollapsed] = useState(false)
 
     const isAuth = useSelector(getUserId)
+
+    const clientName = useSelector(getUserName)
+
+    console.log(clientName)
 
     const appNav = useMemo(() => {
         if (isAuth) {
@@ -31,7 +36,7 @@ const SideBar: FC<SideBarProps> = (props) => {
                 },
 
                 {
-                    path: Routes.PROFILE,
+                    path: `${clientName}`,
                     name: 'Profile',
                     Icon: <HomeIcon width="30" />,
                 },
@@ -50,7 +55,7 @@ const SideBar: FC<SideBarProps> = (props) => {
                 },
             ]
         }
-    }, [isAuth])
+    }, [isAuth, clientName])
 
     const { t } = useTranslation()
 

@@ -1,9 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios, { type AxiosInstance } from 'axios'
+import { type AxiosInstance } from 'axios'
 import { userActions } from 'entities/User/slice/userSlice'
-import { useNavigate } from 'react-router-dom'
 import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage'
-import { Routes } from 'app/providers/router/config/routerConfig'
 interface loginProps {
     username: string
     password: string

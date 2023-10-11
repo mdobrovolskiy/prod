@@ -17,7 +17,7 @@ const Navbar = ({ className }: NavbarProps) => {
     const [loginOpened, setLoginOpened] = useState(false)
     const dispatch = useDispatch()
     const userId = useSelector(
-        (state: StateSchema) => state.userReducer.authData.id
+        (state: StateSchema) => state?.userReducer?.authData?.id
     )
 
     const closeModal = () => {

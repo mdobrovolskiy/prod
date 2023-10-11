@@ -7,3 +7,5 @@ export const authIsLoadingSelector = (state: StateSchema) =>
 
 export const userIdSelector = (state: StateSchema) =>
     state?.userReducer?.authData?.id
+export const getUserName = (state: StateSchema) =>
+    state?.userReducer?.authData?.username

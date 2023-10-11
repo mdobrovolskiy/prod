@@ -4,9 +4,12 @@ import { LoginFormAsync } from '../LoginForm/LoginFormAsync'
 import { authReducer } from 'features/AuthByUsername/model/slice/authSlice'
 import { useSelector } from 'react-redux'
 import { Loader } from 'widgets/Loader'
-import { userIdSelector } from 'features/AuthByUsername/model/selectors/getAuthData'
+import {
+    userIdSelector,
+    getUserName,
+} from 'features/AuthByUsername/model/selectors/getAuthData'
 import { useNavigate } from 'react-router-dom'
-import { Routes } from 'app/providers/router/config/routerConfig'
+
 import {
     ReducerLoader,
     type LoaderReducers,
@@ -21,14 +24,14 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
     const reducers: LoaderReducers = {
         authReducer,
     }
-    const userId = useSelector(userIdSelector)
+    const username = useSelector(getUserName)
 
     useEffect(() => {
-        if (userId) {
+        if (username) {
             onClose()
-            navigate(Routes.PROFILE)
+            navigate(`${username}`)
         }
-    }, [userId])
+    }, [username])
 
     return (
         <Modal onClose={onClose}>

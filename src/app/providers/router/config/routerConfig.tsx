@@ -6,14 +6,14 @@ import { ProfilePageAsync } from 'pages/ProfilePage/ui/ProfilePage/ProfilePageAs
 import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage'
 import PrivateRoute from './PrivateRoute'
 import { ArticlesPage } from 'pages/ArticlesPage/ArticlesPage'
-import { ArticlesDetailsPage } from 'pages/ArticleDetailsPage/ArticlesDetailsPage'
+import { ArticlesDetailsPage } from 'pages/ArticleDetailsPage/ui/ArticlesDetailsPage'
 
 export enum Routes {
     HOME = '/',
-    PROFILE = '/profile',
     ARTICLES = '/articles',
     ARTICLES_DETAILS = '/articles/:id',
     NOTFOUND = '*',
+    USER = '/:username',
 }
 
 type RouterRecord = Record<Routes, RouteProps>
@@ -31,7 +31,7 @@ export const routerConfig: RouterRecord = {
         element: <NotFound />,
         path: Routes.NOTFOUND,
     },
-    [Routes.PROFILE]: {
+    [Routes.USER]: {
         element: (
             <PrivateRoute>
                 <ErrorBoundary>
@@ -39,7 +39,7 @@ export const routerConfig: RouterRecord = {
                 </ErrorBoundary>
             </PrivateRoute>
         ),
-        path: Routes.PROFILE,
+        path: Routes.USER,
     },
     [Routes.ARTICLES]: {
         element: (

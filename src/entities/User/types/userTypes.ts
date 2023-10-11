@@ -1,8 +1,6 @@
+import { type User } from 'entities/Profile/model/types/profile'
+
 export interface UserSchema {
-    authData: User
+    authData?: User
     initiated: boolean
-}
-export interface User {
-    username?: string
-    id?: string | number
 }

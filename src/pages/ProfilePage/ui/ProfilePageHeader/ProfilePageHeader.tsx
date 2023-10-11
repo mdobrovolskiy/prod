@@ -16,11 +16,18 @@ import { getProfileLoading } from 'entities/Profile/model/selectors/getProfileLo
 import { getProfileFormData } from 'entities/Profile/model/selectors/getProfileFormData'
 import { updateProfileData } from 'entities/Profile/model/services/updateProfileData/updateProfileData'
 import { getProfileError } from 'entities/Profile/model/selectors/getProfileError'
+import { useParams } from 'react-router-dom'
+import { getClientUsername } from 'entities/User/selectors/getClientName'
 
 export const ProfilePageHeader = () => {
-    const clientData = useSelector(getProfileFormData)
+    const userData = useSelector(getProfileFormData)
+
+    const clientName = useSelector(getClientUsername)
 
     const readonly = useSelector(getProfileReadonly)
+    const { username } = useParams()
+
+    const isClient = clientName === username
 
     const isLoading = useSelector(getProfileLoading)
 
@@ -33,10 +40,10 @@ export const ProfilePageHeader = () => {
     }, [dispatch])
 
     const handleConfirmEdit = useCallback(() => {
-        if (clientData) {
+        if (userData) {
             dispatch(updateProfileData())
         }
-    }, [clientData, dispatch])
+    }, [userData, dispatch])
 
     const handleCancelEdit = useCallback(() => {
         dispatch(profileActions.handleReadonly(true))
@@ -124,40 +131,42 @@ export const ProfilePageHeader = () => {
 
     return (
         <>
-            <div className={styles.top}>
-                <h2>Profile</h2>
-                {readonly ? (
-                    <Button
-                        disabled={isLoading}
-                        onClick={openEdit}
-                        theme={ThemeButton.MAIN}
-                    >
-                        Edit
-                    </Button>
-                ) : (
-                    <div className={styles.buttons}>
+            {isClient && (
+                <div className={styles.top}>
+                    <h2>Profile</h2>
+                    {readonly ? (
                         <Button
                             disabled={isLoading}
-                            className={styles.cancel}
-                            onClick={handleCancelEdit}
+                            onClick={openEdit}
                             theme={ThemeButton.MAIN}
                         >
-                            Cancel
+                            Edit
                         </Button>
-                        <Button
-                            disabled={isLoading}
-                            onClick={handleConfirmEdit}
-                            theme={ThemeButton.MAIN}
-                        >
-                            Confirm
-                        </Button>
-                    </div>
-                )}
-            </div>
+                    ) : (
+                        <div className={styles.buttons}>
+                            <Button
+                                disabled={isLoading}
+                                className={styles.cancel}
+                                onClick={handleCancelEdit}
+                                theme={ThemeButton.MAIN}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                disabled={isLoading}
+                                onClick={handleConfirmEdit}
+                                theme={ThemeButton.MAIN}
+                            >
+                                Confirm
+                            </Button>
+                        </div>
+                    )}
+                </div>
+            )}
             <ProfileCard
                 error={error}
                 isLoading={isLoading}
-                data={clientData}
+                data={userData}
                 readonly={readonly}
                 onFirstnameChange={onFirstnameChange}
                 onLastnameChange={onLastnameChange}

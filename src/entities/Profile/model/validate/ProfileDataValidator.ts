@@ -1,4 +1,4 @@
-import { type Profile } from 'entities/Profile/model/types/profile'
+import { type User } from 'entities/Profile/model/types/profile'
 export enum ProfileError {
     INVALID_AGE = 'INVALID_AGE',
     INVALID_CITY = 'INVALID_CITY',
@@ -7,7 +7,7 @@ export enum ProfileError {
     INVALID_USERNAME = 'INVALID_USERNAME',
     SERVER_ERROR = 'SERVER_ERROR',
 }
-export const profileDataValidator = (data: Profile) => {
+export const profileDataValidator = (data: User) => {
     const { age, city, first, lastname, username } = data
     const errors = []
     console.log(age)

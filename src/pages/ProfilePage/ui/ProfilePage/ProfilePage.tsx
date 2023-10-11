@@ -6,6 +6,7 @@ import { fetchProfileData } from '../../../../entities/Profile/model/services/fe
 import { ReducerLoader } from '../../../../helpers/ReducerLoader/ReducerLoader'
 import { profileReducer } from '../../../../entities/Profile/model/slice/profileSlice'
 import { ProfilePageHeader } from 'pages/ProfilePage/ui/ProfilePageHeader/ProfilePageHeader'
+import { useParams } from 'react-router-dom'
 
 const reducers = {
     profileReducer,
@@ -13,9 +14,12 @@ const reducers = {
 
 const ProfilePage = () => {
     const dispatch = useDispatch()
+    const { username } = useParams()
     useEffect(() => {
-        dispatch(fetchProfileData())
-    }, [])
+        if (username) {
+            dispatch(fetchProfileData(username))
+        }
+    }, [username])
 
     return (
         <ReducerLoader reducers={reducers}>

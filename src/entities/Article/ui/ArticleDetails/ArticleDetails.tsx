@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { type FC, useEffect, useMemo } from 'react'
+import { type FC, useMemo, useCallback } from 'react'
 import styles from './ArticleDetails.module.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
 import {
@@ -11,23 +11,27 @@ import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHead
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent'
 import { ArticleImageBlockComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent'
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent'
-import { Text, ThemeText } from 'widgets/Text/Text'
+
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
+import { ArticleComments } from '../ArticleComments/ArticleComments'
+import { AddArticleComment } from '../AddArticleComment/AddArticleComment'
 
 interface ArticleDetailsProps {
     className?: string
-    id?: string
+
     data?: Article
 }
 export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
-    const { className, id, data } = props
+    const { className, data } = props
 
     const headerData = useMemo(() => {
         const copy = { ...data }
         delete copy.blocks
         return copy
     }, [data])
+    const dispatch = useAppDispatch()
 
-    const renderBlock = (block: ArticleBlock) => {
+    const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
             case ArticleBlockType.CODE:
                 return (
@@ -58,12 +62,15 @@ export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
             default:
                 return null
         }
-    }
+    }, [])
 
     return (
         <div className={classNames(styles.ArticleDetails, {}, [])}>
             <ArticleDetailsHeader data={headerData} />
             {data?.blocks?.map((block) => renderBlock(block))}
+            <h2 style={{ fontWeight: 500 }}>Comments</h2>
+            <AddArticleComment />
+            <ArticleComments />
         </div>
     )
 }

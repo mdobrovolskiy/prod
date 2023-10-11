@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios, { AxiosError } from 'axios'
 import { getProfileFormData } from 'entities/Profile/model/selectors/getProfileFormData'
+import { getUserId } from 'entities/User/selectors/getUserId'
 import {
     type ProfileError,
     profileDataValidator,
@@ -14,15 +15,19 @@ export const updateProfileData = createAsyncThunk(
         const data = getProfileFormData(getState())
         console.log(2131231)
         let errors: ProfileError[] = []
+
+        const userId = getUserId(getState() as any)
+
         if (data) {
             errors = profileDataValidator(data)
         }
         if (errors.length) {
             return rejectWithValue(errors)
         }
+
         try {
             // @ts-expect-error
-            const res = await extra.api.put('/profile', data)
+            const res = await extra.api.put(`/users/${userId}`, data)
             return res.data
         } catch (err) {
             if (axios.isAxiosError(err)) {

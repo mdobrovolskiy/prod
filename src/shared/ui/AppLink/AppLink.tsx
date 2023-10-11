@@ -11,10 +11,16 @@ export enum AppLinkTheme {
 
 interface AppLinkProps extends LinkProps {
     className?: string
-    theme: AppLinkTheme
+    theme?: AppLinkTheme
 }
 const AppLink: FC<AppLinkProps> = (props) => {
-    const { to, className, children, theme, ...otherProps } = props
+    const {
+        to,
+        className,
+        children,
+        theme = AppLinkTheme.PRIMARY,
+        ...otherProps
+    } = props
     return (
         <Link
             to={to}

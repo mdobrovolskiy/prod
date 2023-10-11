@@ -1,7 +1,7 @@
 import { type ChangeEvent, type FC } from 'react'
 import styles from './ProfileCard.module.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
-import { type Profile } from 'entities/Profile/model/types/profile'
+import { type User } from 'entities/Profile/model/types/profile'
 import { Loader } from 'widgets/Loader'
 import { ProfileItem } from '../ProfileItem/ProfileItem'
 import { Avatar } from 'widgets/Avatar/Avatar'
@@ -12,7 +12,7 @@ import { type ProfileError } from 'entities/Profile/model/validate/ProfileDataVa
 
 interface ProfileCardProps {
     className?: string
-    data?: Profile
+    data?: User
     error?: string | ProfileError[]
     readonly?: boolean
     onLastnameChange?: (e: ChangeEvent<HTMLInputElement>) => void

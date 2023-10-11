@@ -1,0 +1,24 @@
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.itemContent {
+    margin-left: 10px;
+}
+
+.userName {
+    font-weight: 500;
+}
+
+.comment {
+    font-weight: 300;
+}
+
+.CommentItem {
+    margin-bottom: 10px;
+}
+
+.link {
+    justify-content: start;
+}
