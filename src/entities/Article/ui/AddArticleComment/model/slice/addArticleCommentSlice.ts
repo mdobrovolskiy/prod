@@ -24,6 +24,7 @@ const addArticleCommentSlice = createSlice({
         builder.addCase(sendArticleComment.fulfilled, (state, action) => {
             state.isLoading = false
             state.error = undefined
+            state.text = ''
         })
         builder.addCase(sendArticleComment.rejected, (state) => {
             state.isLoading = false

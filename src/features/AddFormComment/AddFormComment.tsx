@@ -1,10 +1,11 @@
 import { type FC, type ChangeEvent } from 'react'
-
+import styles from './AddFormComment.module.scss'
 import { Input } from 'widgets/Input/Input'
 import { Button } from 'widgets/Button'
 import { ThemeButton } from 'widgets/Button/ui/Button'
 
 import { Loader } from 'widgets/Loader'
+import { classNames } from 'shared/lib/classNames/classNames'
 interface AddFormCommentProps {
     className?: string
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -20,7 +21,10 @@ export const AddFormComment: FC<AddFormCommentProps> = (props) => {
         return <Loader />
     }
     return (
-        <form onSubmit={onSubmit}>
+        <form
+            onSubmit={onSubmit}
+            className={classNames(styles.Form, {}, [className])}
+        >
             <Input
                 onChange={onChange}
                 value={value}

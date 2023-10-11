@@ -1,0 +1,12 @@
+.ArticleList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.view {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}

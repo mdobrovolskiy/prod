@@ -1,0 +1,124 @@
+.ArticleCardBig {
+    display: flex;
+    justify-content: center;
+
+    .card {
+        width: 90%;
+        padding: 15px;
+        border-radius: 12px;
+        background-color: var(--card-bg);
+        transition: 0.2s;
+    }
+
+    .info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        justify-content: space-between;
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+    }
+
+    .name {
+        margin-left: 10px;
+        font-weight: 500;
+        font-size: var(--font-size-l);
+    }
+
+    .articleText {
+        margin-top: 10px;
+        max-height: 196px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .topCard {
+        position: relative;
+        width: 100%;
+        height: 300px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+    }
+
+    .bottomCard {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        justify-content: space-between;
+    }
+
+    .createdAt {
+        position: absolute;
+        top: 10px;
+        right: 5px;
+        color: var(--overlay-color);
+    }
+
+    .title {
+        margin-bottom: 10px;
+
+        h3 {
+            font-weight: 400;
+        }
+    }
+}
+
+.ArticleCardSmall {
+    cursor: pointer;
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    .card {
+        width: 250px;
+        padding: 15px;
+        border-radius: 12px;
+        background-color: var(--card-bg);
+        transition: 0.2s;
+
+        &:hover {
+            transform: scale(1.01);
+        }
+    }
+
+    .topCard {
+        width: 100%;
+        aspect-ratio: 1/1;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+    }
+
+    .bottomCard {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        justify-content: space-between;
+    }
+
+    .createdAt {
+        position: absolute;
+        top: 10px;
+        right: 5px;
+        color: var(--overlay-color);
+    }
+
+    .title {
+        margin-bottom: 10px;
+
+        h3 {
+            font-weight: 400;
+        }
+    }
+}

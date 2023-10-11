@@ -5,7 +5,7 @@ import { ErrorBoundary } from 'app/providers/ErrorBoundary/ErrorBoundary'
 import { ProfilePageAsync } from 'pages/ProfilePage/ui/ProfilePage/ProfilePageAsync'
 import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage'
 import PrivateRoute from './PrivateRoute'
-import { ArticlesPage } from 'pages/ArticlesPage/ArticlesPage'
+import { ArticlesPage } from 'pages/ArticlesPage/ui/ArticlesPage'
 import { ArticlesDetailsPage } from 'pages/ArticleDetailsPage/ui/ArticlesDetailsPage'
 
 export enum Routes {

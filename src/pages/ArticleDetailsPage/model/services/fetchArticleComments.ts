@@ -6,7 +6,7 @@ import { type ThunkConfig } from 'app/providers/StoreProvider/types/ThunkConfig'
 export const fetchArticleComments = createAsyncThunk(
     'article/fetchArticleComments',
     async (_, thunkApi) => {
-        const { extra, rejectWithValue, getState } = thunkApi
+        const { extra, rejectWithValue, getState, dispatch } = thunkApi
 
         const articleId = getArticleId(getState() as any)
         if (!articleId) {
@@ -20,8 +20,7 @@ export const fetchArticleComments = createAsyncThunk(
                     _expand: 'user',
                 },
             })
-
-            return res.data
+            return res.data.reverse()
         } catch (err) {
             if (axios.isAxiosError(err)) {
                 return rejectWithValue(err.message)

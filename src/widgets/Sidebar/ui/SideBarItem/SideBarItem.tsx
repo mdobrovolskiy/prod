@@ -14,7 +14,11 @@ const SideBarItem: FC<SideBarItemProps> = (props) => {
     const { className, path, name, Icon, collapsed } = props
     return (
         <Button className={classNames(styles.SideBarItem, {}, [])}>
-            <AppLink to={path} theme={AppLinkTheme.PRIMARY}>
+            <AppLink
+                to={path}
+                theme={AppLinkTheme.PRIMARY}
+                className={styles.link}
+            >
                 {!collapsed && name} {Icon}
             </AppLink>
         </Button>

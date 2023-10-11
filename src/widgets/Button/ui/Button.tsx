@@ -5,6 +5,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 export enum ThemeButton {
     CLEAR = 'clear',
     MAIN = 'main',
+    BLACK = 'black',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,7 +17,7 @@ export const Button: FC<ButtonProps> = (props) => {
     const {
         className,
         children,
-        theme = ThemeButton.CLEAR,
+        theme = ThemeButton.MAIN,
         disabled,
         ...otherProps
     } = props

@@ -19,5 +19,6 @@
 
 .page-wrapper {
     width: calc(100vw - var(--sidebar-width) - 20px);
+    overflow: hidden;
     padding: 20px;
 }
