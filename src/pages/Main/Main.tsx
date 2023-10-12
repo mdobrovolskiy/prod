@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Page } from 'shared/Page/Page'
 import { Button, ThemeButton } from 'widgets/Button/ui/Button'
 
 const Main = () => {
@@ -8,12 +9,18 @@ const Main = () => {
             throw new Error()
         }
     }, [error])
-    return <>
-        <Button onClick={() => { setError(true) }} theme={ThemeButton.MAIN}>
-            Error
-        </Button>
-
-    </>
+    return (
+        <Page>
+            <Button
+                onClick={() => {
+                    setError(true)
+                }}
+                theme={ThemeButton.MAIN}
+            >
+                Error
+            </Button>
+        </Page>
+    )
 }
 
 export default Main

@@ -10,3 +10,18 @@
     gap: 5px;
     margin-bottom: 20px;
 }
+
+.SkeletonBig {
+    width: 950px;
+    height: 500px;
+    margin: auto;
+}
+
+.SkeletonSmall {
+    width: 250px;
+    height: 300px;
+}
+
+.selected {
+    outline: 1px solid var(--primary-color);
+}

@@ -5,4 +5,8 @@ export interface ArticleListSchema {
     error?: string
     data?: Article[]
     smallCards: boolean
+    limit: number
+    page: number
+    hasMore: boolean
+    _inited: boolean
 }

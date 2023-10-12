@@ -11,3 +11,14 @@ export const getArticleListError = (state: StateSchema) =>
 
 export const getArticleListCardSize = (state: StateSchema) =>
     state.articleListReducer?.smallCards
+
+export const getArticleListPageNum = (state: StateSchema) =>
+    state.articleListReducer?.page
+
+export const getArticleListLimit = (state: StateSchema) =>
+    state.articleListReducer?.limit
+
+export const getArticleListHasMore = (state: StateSchema) =>
+    state.articleListReducer?.hasMore
+export const getArticleListInited = (state: StateSchema) =>
+    state.articleListReducer?._inited

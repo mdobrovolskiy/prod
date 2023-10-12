@@ -9,6 +9,10 @@ const initialState: ArticleListSchema = {
     data: undefined,
     error: undefined,
     smallCards: true,
+    page: 1,
+    limit: 10,
+    hasMore: true,
+    _inited: false,
 }
 
 const articleListSlice = createSlice({
@@ -23,9 +27,14 @@ const articleListSlice = createSlice({
             const isSmallViewSelected = JSON.parse(
                 localStorage.getItem(LOCAL_STORAGE_VIEW_KEY) || ''
             )
-            if (!isSmallViewSelected) {
+            if (isSmallViewSelected === false) {
                 state.smallCards = false
+                state.limit = 5
             }
+            state._inited = true
+        },
+        setPage(state) {
+            state.page = state.page + 1
         },
     },
     extraReducers(builder) {
@@ -38,7 +47,14 @@ const articleListSlice = createSlice({
         })
         builder.addCase(fetchArticles.fulfilled, (state, action) => {
             state.isLoading = false
-            state.data = action.payload
+            if (action.payload.length < state.limit) {
+                state.hasMore = false
+            }
+            if (state.data) {
+                state.data = [...state.data, ...action.payload]
+            } else {
+                state.data = action.payload
+            }
         })
     },
 })

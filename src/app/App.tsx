@@ -20,7 +20,7 @@ const App = () => {
     return (
         <div id="app" className={`App ${theme}`}>
             <Navbar />
-            <div className="content-page">
+            <div className="content">
                 <SideBar />
                 {initiated && <AppRouter />}
             </div>

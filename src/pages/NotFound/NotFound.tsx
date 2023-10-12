@@ -1,11 +1,10 @@
 import { type FC } from 'react'
+import { Page } from 'shared/Page/Page'
 import { classNames } from 'shared/lib/classNames/classNames'
 interface NotFoundProps {
-  className?: string
+    className?: string
 }
 export const NotFound: FC<NotFoundProps> = (props) => {
     const { className } = props
-    return (
-        <div className={classNames('notFound', {}, [])}>NotFound</div>
-    )
+    return <Page className={classNames('notFound', {}, [])}>NotFound</Page>
 }

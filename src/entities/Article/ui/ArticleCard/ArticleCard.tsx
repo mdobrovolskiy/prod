@@ -61,7 +61,12 @@ export const ArticleCard: FC<ArticleCardProps> = (props) => {
                             theme={AppLinkTheme.SECONDARY}
                             to={`/articles/${id}`}
                         >
-                            <Button theme={ThemeButton.BLACK}>Read more</Button>
+                            <Button
+                                className={styles.readMore}
+                                theme={ThemeButton.BLACK}
+                            >
+                                Read more
+                            </Button>
                         </AppLink>
 
                         <span>{views} views</span>

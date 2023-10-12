@@ -17,9 +17,13 @@
     display: flex;
 }
 
+.content {
+    display: flex;
+}
+
 .page-wrapper {
-    width: calc(100vw - var(--sidebar-width) - 20px);
-    overflow: hidden;
+    width: calc(100vw - var(--sidebar-width) - 10px);
+    overflow-y: auto;
     padding: 20px;
 }
 

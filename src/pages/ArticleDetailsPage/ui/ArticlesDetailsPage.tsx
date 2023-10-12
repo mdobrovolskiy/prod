@@ -14,6 +14,8 @@ import { getArticleData } from 'entities/Article/model/selectors/getArticleData'
 import { Text, ThemeText } from 'widgets/Text/Text'
 import { ArticleDetails } from 'entities/Article/ui/ArticleDetails/ArticleDetails'
 import { articleCommentsReducer } from '../model/slice/articleCommentsSlice'
+import { Page } from 'shared/Page/Page'
+import { articleListActions } from 'entities/Article/ui/ArticleList/model/slice/articleListSlice'
 interface ArticlesDetailsPageProps {
     className?: string
 }
@@ -44,10 +46,12 @@ export const ArticlesDetailsPage: FC<ArticlesDetailsPageProps> = (props) => {
     if (error) {
         return <h1>Article not found</h1>
     }
-    console.log(data)
+
     return (
-        <ReducerLoader reducers={reducers}>
-            <ArticleDetails data={data} />
-        </ReducerLoader>
+        <Page>
+            <ReducerLoader reducers={reducers}>
+                <ArticleDetails data={data} />
+            </ReducerLoader>
+        </Page>
     )
 }
