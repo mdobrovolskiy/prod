@@ -1,3 +1,7 @@
+.animation {
+    width: 100%;
+}
+
 .ArticleCardBig {
     display: flex;
     justify-content: center;
@@ -122,10 +126,23 @@
     }
 
     .title {
-        margin-bottom: 10px;
-
         h3 {
             font-weight: 400;
+            max-height: 48px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
+}
+
+.type {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 300;
+    width: 65%;
+    color: var(--secondary-color);
 }

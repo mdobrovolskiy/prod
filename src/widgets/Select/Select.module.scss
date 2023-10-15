@@ -2,6 +2,7 @@
     color: var(--primary-color);
     background: none;
     border: 1px solid var(--primary-color);
+    cursor: pointer;
 
     &:focus {
         outline: none;

@@ -18,15 +18,42 @@ export const ArticleDetailsHeader: FC<ArticleDetailsHeaderProps> = (props) => {
                     <img src={data?.img} alt="" />
                 </div>
             </div>
-
-            <Text text={data?.title} type={'h1'} className={styles.title} />
-
-            <Text type="p" text={data?.subtitle} align="left" />
-            <div className={styles.subtitle}>{data?.createdAt}</div>
-            <div className={styles.subtitle}>{data?.views} views</div>
-            <div className={styles.subtitle}>
-                {data?.type?.map((item) => <span key={item}>{item}</span>)}
+            <div className={styles.descr}>
+                <div className={styles.date}>
+                    <img
+                        width="20"
+                        height="20"
+                        src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar--v1.png"
+                        alt="calendar--v1"
+                    />
+                    {data?.createdAt}
+                </div>
+                <div className={styles.views}>
+                    <img
+                        width="20"
+                        height="20"
+                        src="https://img.icons8.com/ios-glyphs/30/FFFFFF/visible--v1.png"
+                        alt="visible--v1"
+                    />
+                    {data?.views}{' '}
+                </div>
             </div>
+            <div className={styles.subtitle}>
+                <span className={styles.types}>{data?.type?.join(', ')}</span>
+            </div>
+            <Text
+                text={data?.title}
+                type={'h1'}
+                align="left"
+                className={styles.title}
+            />
+
+            <Text
+                type="p"
+                text={data?.subtitle}
+                align="left"
+                className={styles.sub}
+            />
         </div>
     )
 }

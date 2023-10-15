@@ -141,6 +141,13 @@ export const ProfilePageHeader = () => {
                             theme={ThemeButton.MAIN}
                         >
                             Edit
+                            <img
+                                style={{ marginLeft: '5px' }}
+                                width="20"
+                                height="20"
+                                src="https://img.icons8.com/external-ios-line-2px-amoghdesign/30/FFFFFF/external-edit-multimedia-line-30px-ios-line-2px-amoghdesign.png"
+                                alt="edit"
+                            />
                         </Button>
                     ) : (
                         <div className={styles.buttons}>

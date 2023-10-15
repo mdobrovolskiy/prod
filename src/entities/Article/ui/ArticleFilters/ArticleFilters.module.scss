@@ -1,0 +1,20 @@
+.ArticleFilters {
+    display: flex;
+    height: 40px;
+    gap: 10px;
+}
+
+.select {
+    border-radius: 10px;
+    border: none !important;
+    background: var(--card-bg) !important;
+    padding: 10px;
+    font-weight: 500;
+    color: #6beed2 !important;
+}
+
+.input {
+    border: 2px solid var(--card-bg) !important;
+    color: #6beed2 !important;
+    border-radius: 12px;
+}

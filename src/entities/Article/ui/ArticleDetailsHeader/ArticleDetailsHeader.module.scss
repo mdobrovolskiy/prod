@@ -13,4 +13,31 @@
 
 .title {
     font-weight: 500;
+    margin: 20px 0;
+}
+
+.sub {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.views {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.descr {
+    display: flex;
+    gap: 10px;
+}
+
+.types {
+    color: var(--secondary-color);
+}
+
+.date {
+    display: flex;
+    gap: 4px;
+    align-items: center;
 }

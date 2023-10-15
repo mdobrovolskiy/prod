@@ -21,6 +21,7 @@ import {
 } from 'entities/Article/ui/ArticleList/model/selectors/articleListSelectors'
 
 import { Skeleton } from 'widgets/Skeleton/Skeleton'
+import { ArticleFilters } from 'entities/Article/ui/ArticleFilters/ArticleFilters'
 
 interface ArticleListProps {
     className?: string
@@ -45,9 +46,9 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
 
     const size = isSmallCard ? ArticleCardSize.SMALL : ArticleCardSize.BIG
 
-    const smallSelected = isSmallCard ? styles.selected : undefined
+    const smallSelected = isSmallCard ? styles.selected : styles.notSelected
 
-    const bigSelected = isSmallCard ? undefined : styles.selected
+    const bigSelected = isSmallCard ? styles.notSelected : styles.selected
 
     const skeletonClass = isSmallCard
         ? styles.SkeletonSmall
@@ -70,23 +71,26 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
 
     return (
         <ReducerLoader reducers={reducer}>
-            <div className={styles.view}>
-                <Button onClick={onSmallSize} className={smallSelected}>
-                    <img
-                        width="30"
-                        height="30"
-                        src="https://img.icons8.com/ios-filled/50/07dac4/health-data.png"
-                        alt="activity-grid--v1"
-                    />
-                </Button>
-                <Button className={bigSelected} onClick={onBigSize}>
-                    <img
-                        width="26"
-                        height="26"
-                        src="https://cdn-icons-png.flaticon.com/128/6364/6364402.png"
-                        alt="rows"
-                    />
-                </Button>
+            <div className={styles.topSettings}>
+                <div className={styles.view}>
+                    <Button onClick={onSmallSize} className={smallSelected}>
+                        <img
+                            width="30"
+                            height="30"
+                            src="https://img.icons8.com/ios-filled/50/07dac4/health-data.png"
+                            alt="activity-grid--v1"
+                        />
+                    </Button>
+                    <Button className={bigSelected} onClick={onBigSize}>
+                        <img
+                            width="26"
+                            height="26"
+                            src="https://cdn-icons-png.flaticon.com/128/6364/6364402.png"
+                            alt="rows"
+                        />
+                    </Button>
+                </div>
+                <ArticleFilters />
             </div>
             <div className={classNames(styles.ArticleList, {}, [])}>
                 {articles?.map((article) => (

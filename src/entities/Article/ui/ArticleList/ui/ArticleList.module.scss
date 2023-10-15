@@ -7,8 +7,7 @@
 
 .view {
     display: flex;
-    gap: 5px;
-    margin-bottom: 20px;
+    gap: 10px;
 }
 
 .SkeletonBig {
@@ -23,5 +22,15 @@
 }
 
 .selected {
-    outline: 1px solid var(--primary-color);
+    opacity: 0.6;
+}
+
+.topSettings {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.notSelected {
+    opacity: 1;
 }

@@ -7,7 +7,7 @@
 
 .main {
     border-radius: 10px;
-    background-color: #002446;
+    background-color: var(--card-bg);
     padding: 5px 10px;
     color: #fff;
     font: var(--main-font);
@@ -29,6 +29,10 @@
 
     &:hover {
         transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
     }
 }
 

@@ -101,7 +101,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                 readonly={readonly}
                 onChange={onUsernameChange}
             />
-            <div>
+            <div className={styles.a}>
                 Country:
                 <CountrySelect
                     className={styles.curr}
@@ -110,7 +110,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     readonly={readonly}
                 />
             </div>
-            <div>
+            <div className={styles.a}>
                 Currency:
                 <CurrenctSwitch
                     className={styles.curr}

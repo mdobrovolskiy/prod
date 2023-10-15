@@ -1,12 +1,12 @@
 .ProfileCard {
-    max-width: 100%;
-    border: 1px solid var(--primary-color);
-    padding: 20px;
+    width: 300px;
+    padding: 10px 20px;
     border-radius: 10px;
+    background-color: var(--card-bg);
 }
 
 .avatar {
-    margin: 20px;
+    margin: 10px;
 }
 
 .curr {
@@ -18,6 +18,11 @@
     justify-content: center;
     align-items: center;
     height: 300px;
-    border: 1px solid var(--primary-color);
     border-radius: 10px;
+}
+
+.a {
+    height: 32px;
+    display: flex;
+    align-items: center;
 }

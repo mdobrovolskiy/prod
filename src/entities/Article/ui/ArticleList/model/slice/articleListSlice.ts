@@ -10,7 +10,7 @@ const initialState: ArticleListSchema = {
     error: undefined,
     smallCards: true,
     page: 1,
-    limit: 10,
+    limit: 12,
     hasMore: true,
     _inited: false,
 }
@@ -35,6 +35,12 @@ const articleListSlice = createSlice({
         },
         setPage(state) {
             state.page = state.page + 1
+        },
+        resetData(state) {
+            state.data = undefined
+            state.error = undefined
+            state.hasMore = true
+            state.page = 1
         },
     },
     extraReducers(builder) {
