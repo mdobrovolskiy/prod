@@ -13,7 +13,7 @@ import {
 } from 'entities/Article/ui/ArticleList/model/selectors/articleListSelectors'
 import { useSelector } from 'react-redux'
 import { fetchArticles } from 'entities/Article/ui/ArticleList/model/services/fetchArticles'
-import { ArticleFilters } from 'entities/Article/ui/ArticleFilters/ArticleFilters'
+import { ArticleFilters } from 'entities/Article/ui/ArticleFilters/ui/ArticleFilters/ArticleFilters'
 interface ArticlesPageProps {
     className?: string
 }

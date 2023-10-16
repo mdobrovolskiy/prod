@@ -9,8 +9,10 @@ import {
     getArticleSearch,
     getArticleSort,
     getArticleOrder,
+    getArticleType,
 } from 'entities/Article/ui/ArticleFilters/model/selectors/ArticleFiltersSelector'
 import { type StateSchema } from 'app/providers/StoreProvider/types/StateSchema'
+import { setSearchParams } from 'shared/lib/hooks/useSearchParams'
 
 export const fetchArticles = createAsyncThunk(
     'article/fetchArticles',
@@ -26,6 +28,14 @@ export const fetchArticles = createAsyncThunk(
         const sort = getArticleSort(state)
         const order = getArticleOrder(state)
         const search = getArticleSearch(state)
+        const type = getArticleType(state)
+
+        setSearchParams({
+            sort,
+            order,
+            search,
+            type,
+        })
 
         try {
             // @ts-expect-error
@@ -37,6 +47,7 @@ export const fetchArticles = createAsyncThunk(
                     _sort: sort,
                     _order: order,
                     q: search,
+                    type,
                 },
             })
 

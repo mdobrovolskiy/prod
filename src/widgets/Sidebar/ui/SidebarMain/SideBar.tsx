@@ -24,8 +24,6 @@ const SideBar: FC<SideBarProps> = (props) => {
 
     const clientName = useSelector(getUserName)
 
-    console.log(clientName)
-
     const appNav = useMemo(() => {
         if (isAuth) {
             return [

@@ -15,6 +15,7 @@ import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleT
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { ArticleComments } from '../ArticleComments/ArticleComments'
 import { AddArticleComment } from '../AddArticleComment/AddArticleComment'
+import { ArticleRecommendations } from '../ArticleRecommendations/ui/ArticleRecommendations'
 
 interface ArticleDetailsProps {
     className?: string
@@ -68,8 +69,11 @@ export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
         <div className={classNames(styles.ArticleDetails, {}, [])}>
             <ArticleDetailsHeader data={headerData} />
             {data?.blocks?.map((block) => renderBlock(block))}
+
+            <ArticleRecommendations />
             <h2 style={{ fontWeight: 500 }}>Comments</h2>
             <AddArticleComment />
+
             <ArticleComments />
         </div>
     )

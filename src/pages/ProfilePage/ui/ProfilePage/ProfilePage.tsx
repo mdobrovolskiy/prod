@@ -8,6 +8,7 @@ import { profileReducer } from '../../../../entities/Profile/model/slice/profile
 import { ProfilePageHeader } from 'pages/ProfilePage/ui/ProfilePageHeader/ProfilePageHeader'
 import { useParams } from 'react-router-dom'
 import { Page } from 'shared/Page/Page'
+import { Animation } from 'widgets/Animation/Animation'
 
 const reducers = {
     profileReducer,

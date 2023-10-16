@@ -1,25 +1,33 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useCallback, type ChangeEvent, type FC, useMemo } from 'react'
+import {
+    useCallback,
+    type ChangeEvent,
+    type FC,
+    useMemo,
+    useEffect,
+} from 'react'
 import styles from './ArticleFilters.module.scss'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { type OptionsSelect, Select } from 'widgets/Select/Select'
 import { Input } from 'widgets/Input/Input'
-import { ArticleOrder, ArticleSort } from './model/types/articleFilters'
+import { ArticleOrder, ArticleSort } from '../../model/types/articleFilters'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import {
     getArticleSort,
     getArticleOrder,
     getArticleSearch,
+    getArticleType,
 } from 'entities/Article/ui/ArticleFilters/model/selectors/ArticleFiltersSelector'
 import {
     articleFiltersActions,
     articleFiltersReducer,
-} from './model/slice/articleFilters'
+} from '../../model/slice/articleFilters'
 import { ReducerLoader } from 'helpers/ReducerLoader/ReducerLoader'
 import { fetchArticles } from 'entities/Article/ui/ArticleList/model/services/fetchArticles'
-import { articleListActions } from '../ArticleList/model/slice/articleListSlice'
+import { articleListActions } from '../../../ArticleList/model/slice/articleListSlice'
 import { useDebounce } from 'shared/lib/hooks/useDebounce'
+import { setSearchParams } from 'shared/lib/hooks/useSearchParams'
 
 interface ArticleFiltersProps {
     className?: string
@@ -41,11 +49,17 @@ export const ArticleFilters: FC<ArticleFiltersProps> = (props) => {
     const order = useSelector(getArticleOrder)
     const sort = useSelector(getArticleSort)
     const search = useSelector(getArticleSearch) || ''
+    const type = useSelector(getArticleType)
+
+    useEffect(() => {
+        if (order || sort || search) {
+            setSearchParams({ sort, order, search, type })
+        }
+    }, [])
 
     const fetchData = useCallback(() => {
         dispatch(articleListActions.resetData())
         dispatch(fetchArticles())
-        console.log(123)
     }, [dispatch])
 
     const debouncedSearch = useDebounce(fetchData, 500)

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getParamsValue } from 'shared/lib/hooks/useSearchParams'
 import {
     ArticleOrder,
     type ArticleFiltersProps,
@@ -6,9 +7,10 @@ import {
 } from '../types/articleFilters'
 
 const initialState: ArticleFiltersProps = {
-    order: ArticleOrder.DESC,
-    sort: ArticleSort.VIEW,
-    search: '',
+    order: getParamsValue('order') || ArticleOrder.DESC,
+    sort: getParamsValue('sort') || ArticleSort.VIEW,
+    search: getParamsValue('search') || '',
+    type: getParamsValue('type'),
 }
 
 const articleFilters = createSlice({
@@ -23,6 +25,9 @@ const articleFilters = createSlice({
         },
         setSearch(state, action) {
             state.search = action.payload
+        },
+        setType(state, action) {
+            state.type = action.payload
         },
     },
 })

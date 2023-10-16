@@ -5,3 +5,5 @@ export const getArticleOrder = (state: StateSchema) =>
     state.articleFiltersReducer?.order
 export const getArticleSearch = (state: StateSchema) =>
     state.articleFiltersReducer?.search
+export const getArticleType = (state: StateSchema) =>
+    state.articleFiltersReducer?.type

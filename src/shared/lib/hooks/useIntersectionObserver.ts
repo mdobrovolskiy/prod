@@ -14,7 +14,6 @@ export const useIntersectionObserver = ({
     useEffect(() => {
         let observer: IntersectionObserver
         if (callback && triggerRef.current) {
-            console.log('observe')
             const options = {
                 root: wrapperRef.current,
                 rootMargin: '0px',

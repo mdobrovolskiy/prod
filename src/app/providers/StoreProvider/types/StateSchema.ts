@@ -9,6 +9,7 @@ import { type addArticleCommentSliceType } from 'entities/Article/ui/AddArticleC
 import { type ArticleListSchema } from 'entities/Article/ui/ArticleList/model/types/articleListTypes'
 import { type ScrollPositions } from 'features/SaveScrollPosition/model/types/saveScrollPositionSliceTypes'
 import { type ArticleFiltersProps } from 'entities/Article/ui/ArticleFilters/model/types/articleFilters'
+import { type articleRecommendationsTypes } from 'entities/Article/ui/ArticleRecommendations/model/types/articleRecommendationsTypes'
 
 export interface StateSchema {
     authReducer?: authSchema
@@ -20,6 +21,7 @@ export interface StateSchema {
     articleListReducer?: ArticleListSchema
     saveScrollPositionReducer?: ScrollPositions
     articleFiltersReducer?: ArticleFiltersProps
+    articleRecommendationsReducer?: articleRecommendationsTypes
 }
 export type StateSchemaKey = keyof StateSchema
 

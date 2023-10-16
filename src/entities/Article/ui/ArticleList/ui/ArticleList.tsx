@@ -21,7 +21,9 @@ import {
 } from 'entities/Article/ui/ArticleList/model/selectors/articleListSelectors'
 
 import { Skeleton } from 'widgets/Skeleton/Skeleton'
-import { ArticleFilters } from 'entities/Article/ui/ArticleFilters/ArticleFilters'
+import { ArticleFilters } from 'entities/Article/ui/ArticleFilters/ui/ArticleFilters/ArticleFilters'
+import { articleFiltersActions } from '../../ArticleFilters/model/slice/articleFilters'
+import { ArticleTabs } from '../../ArticleFilters/ui/ArticleTabs/ArticleTabs'
 
 interface ArticleListProps {
     className?: string
@@ -92,6 +94,7 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
                 </div>
                 <ArticleFilters />
             </div>
+            <ArticleTabs />
             <div className={classNames(styles.ArticleList, {}, [])}>
                 {articles?.map((article) => (
                     <ArticleCard
@@ -104,6 +107,7 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
                     Array.from({ length: limit || 10 }, (_, index) => (
                         <Skeleton key={index} className={skeletonClass} />
                     ))}
+                {!isLoading && !articles?.length && <h1>Articles not found</h1>}
             </div>
         </ReducerLoader>
     )
