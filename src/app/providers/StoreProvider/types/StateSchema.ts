@@ -10,6 +10,7 @@ import { type ArticleListSchema } from 'entities/Article/ui/ArticleList/model/ty
 import { type ScrollPositions } from 'features/SaveScrollPosition/model/types/saveScrollPositionSliceTypes'
 import { type ArticleFiltersProps } from 'entities/Article/ui/ArticleFilters/model/types/articleFilters'
 import { type articleRecommendationsTypes } from 'entities/Article/ui/ArticleRecommendations/model/types/articleRecommendationsTypes'
+import { type rtkApi } from 'shared/api/rtkApi'
 
 export interface StateSchema {
     authReducer?: authSchema
@@ -22,6 +23,7 @@ export interface StateSchema {
     saveScrollPositionReducer?: ScrollPositions
     articleFiltersReducer?: ArticleFiltersProps
     articleRecommendationsReducer?: articleRecommendationsTypes
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 }
 export type StateSchemaKey = keyof StateSchema
 

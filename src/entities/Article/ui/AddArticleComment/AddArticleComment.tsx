@@ -23,7 +23,7 @@ export const AddArticleComment = () => {
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(addArticleCommentActions.setText(e.target.value))
     }
-    const value = useSelector(getArticleCommentText)
+    const value = useSelector(getArticleCommentText) || ''
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch(sendArticleComment())

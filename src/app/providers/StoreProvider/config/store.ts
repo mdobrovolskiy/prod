@@ -4,10 +4,12 @@ import { userReducer } from 'entities/User/slice/userSlice'
 import { type StateSchema } from '../types/StateSchema'
 import { createReducerManager } from './reducerManager'
 import { $api } from 'shared/api/api'
+import { rtkApi } from 'shared/api/rtkApi'
 
 export function createReduxStore() {
     const rootReducers: ReducersMapObject = {
         userReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     }
 
     const reducerManager = createReducerManager(rootReducers)
@@ -23,7 +25,7 @@ export function createReduxStore() {
                         api: $api,
                     },
                 },
-            }),
+            }).concat(rtkApi.middleware),
     })
     // @ts-expect-error
     store.reducerManager = reducerManager

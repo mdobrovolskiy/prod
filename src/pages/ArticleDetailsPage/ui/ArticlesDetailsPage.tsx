@@ -11,33 +11,28 @@ import { getArticleLoading } from 'entities/Article/model/selectors/getArticleLo
 import { getArticleError } from 'entities/Article/model/selectors/getArticleError'
 import { Loader } from 'widgets/Loader'
 import { getArticleData } from 'entities/Article/model/selectors/getArticleData'
-import { Text, ThemeText } from 'widgets/Text/Text'
 import { ArticleDetails } from 'entities/Article/ui/ArticleDetails/ArticleDetails'
-import { articleCommentsReducer } from '../model/slice/articleCommentsSlice'
 import { Page } from 'shared/Page/Page'
-import { articleListActions } from 'entities/Article/ui/ArticleList/model/slice/articleListSlice'
+import { useArticleComments } from '../model/api/getArticleById'
 interface ArticlesDetailsPageProps {
     className?: string
 }
 const reducers = {
     articleDetailsReducer,
-    articleCommentsReducer,
 }
 
 export const ArticlesDetailsPage: FC<ArticlesDetailsPageProps> = (props) => {
     const { className } = props
     const { id } = useParams()
-    const dispatch = useAppDispatch()
-    const isLoading = useSelector(getArticleLoading)
-    const error = useSelector(getArticleError)
-    const data = useSelector(getArticleData)
+    const { error, data, isLoading } = useArticleComments(`articles/${id}`)
 
-    useEffect(() => {
-        if (id) {
-            dispatch(fetchArticleById(id))
-        }
-        console.log('EEEEEEE')
-    }, [id])
+    if (!data) {
+        return (
+            <ReducerLoader reducers={reducers}>
+                <Loader />
+            </ReducerLoader>
+        )
+    }
 
     if (isLoading) {
         return <Loader />
@@ -48,10 +43,10 @@ export const ArticlesDetailsPage: FC<ArticlesDetailsPageProps> = (props) => {
     }
 
     return (
-        <Page>
-            <ReducerLoader reducers={reducers}>
+        <ReducerLoader reducers={reducers}>
+            <Page>
                 <ArticleDetails data={data} />
-            </ReducerLoader>
-        </Page>
+            </Page>
+        </ReducerLoader>
     )
 }

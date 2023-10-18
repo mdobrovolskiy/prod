@@ -9,18 +9,7 @@ const Main = () => {
             throw new Error()
         }
     }, [error])
-    return (
-        <Page>
-            <Button
-                onClick={() => {
-                    setError(true)
-                }}
-                theme={ThemeButton.MAIN}
-            >
-                Error
-            </Button>
-        </Page>
-    )
+    return <Page></Page>
 }
 
 export default Main

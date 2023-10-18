@@ -13,7 +13,7 @@ import { ArticleImageBlockComponent } from 'entities/Article/ui/ArticleImageBloc
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent'
 
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-import { ArticleComments } from '../ArticleComments/ArticleComments'
+import { ArticleComments } from '../ArticleComments/ui/ArticleComments'
 import { AddArticleComment } from '../AddArticleComment/AddArticleComment'
 import { ArticleRecommendations } from '../ArticleRecommendations/ui/ArticleRecommendations'
 
@@ -30,13 +30,13 @@ export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
         delete copy.blocks
         return copy
     }, [data])
-    const dispatch = useAppDispatch()
 
     const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
             case ArticleBlockType.CODE:
                 return (
                     <ArticleCodeBlockComponent
+                        key={block.id}
                         type={block.type}
                         id={block.id}
                         code={block.code}
@@ -45,6 +45,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
             case ArticleBlockType.TEXT:
                 return (
                     <ArticleTextBlockComponent
+                        key={block.id}
                         id={block.id}
                         paragraphs={block.paragraphs}
                         type={block.type}
@@ -54,6 +55,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
             case ArticleBlockType.IMAGE:
                 return (
                     <ArticleImageBlockComponent
+                        key={block.id}
                         id={block.id}
                         src={block.src}
                         title={block.title}
@@ -73,7 +75,6 @@ export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
             <ArticleRecommendations />
             <h2 style={{ fontWeight: 500 }}>Comments</h2>
             <AddArticleComment />
-
             <ArticleComments />
         </div>
     )

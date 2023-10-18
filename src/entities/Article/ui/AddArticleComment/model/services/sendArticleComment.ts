@@ -3,7 +3,6 @@ import { isAxiosError } from 'axios'
 import { getArticleId } from 'entities/Article/model/selectors/getArticleId'
 import { getArticleCommentText } from '../selectors/articleCommentSelectors'
 import { getUserId } from 'entities/User/selectors/getUserId'
-import { fetchArticleComments } from 'pages/ArticleDetailsPage/model/services/fetchArticleComments'
 
 export const sendArticleComment = createAsyncThunk(
     'articleDetails/sendArticleComment',
@@ -25,7 +24,6 @@ export const sendArticleComment = createAsyncThunk(
                 articleId,
                 userId,
             })
-            dispatch(fetchArticleComments())
 
             return response.data
         } catch (err) {

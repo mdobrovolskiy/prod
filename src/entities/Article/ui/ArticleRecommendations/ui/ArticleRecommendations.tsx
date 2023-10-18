@@ -13,6 +13,9 @@ import { ArticleCard, ArticleCardSize } from '../../ArticleCard/ArticleCard'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { fetchArticlesRecommendations } from 'entities/Article/ui/ArticleRecommendations/model/services/fetchArticleRecommendations'
 import { Loader } from 'widgets/Loader'
+import { rtkApi } from 'shared/api/rtkApi'
+import { useArticleRecs } from '../model/api/getArticleRecs'
+import { type Article } from 'entities/Article/model/types/Article'
 interface ArticleRecommendationsProps {
     className?: string
 }
@@ -25,18 +28,20 @@ export const ArticleRecommendations: FC<ArticleRecommendationsProps> = (
     props
 ) => {
     const { className } = props
-    const dispatch = useAppDispatch()
-    useEffect(() => {
-        dispatch(fetchArticlesRecommendations())
-    }, [dispatch])
-    const recommendationsArticles = useSelector(getRecommendationsData)
-    const isLoading = useSelector(getRecommendationsIsLoading)
+
+    const { isLoading, data, error } = useArticleRecs({
+        url: 'articles',
+        limit: 4,
+    })
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <ReducerLoader reducers={reducers}>
             <h1 className={styles.title}>Recommendations</h1>
             <div className={styles.main}>
-                {recommendationsArticles?.map((item) => (
+                {data?.map((item: Article) => (
                     <ArticleCard
                         key={item.id}
                         size={ArticleCardSize.SMALL}

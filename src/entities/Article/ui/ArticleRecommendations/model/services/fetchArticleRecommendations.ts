@@ -5,6 +5,7 @@ export const fetchArticlesRecommendations = createAsyncThunk(
     'article/fetchArticlesRecommendations',
     async (_, thunkApi) => {
         const { extra, rejectWithValue } = thunkApi
+
         try {
             // @ts-expect-error
             const response = await extra.api.get('/articles', {

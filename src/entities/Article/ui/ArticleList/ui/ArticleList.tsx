@@ -19,7 +19,6 @@ import {
     getArticleListLimit,
     getArticleListInited,
 } from 'entities/Article/ui/ArticleList/model/selectors/articleListSelectors'
-
 import { Skeleton } from 'widgets/Skeleton/Skeleton'
 import { ArticleFilters } from 'entities/Article/ui/ArticleFilters/ui/ArticleFilters/ArticleFilters'
 import { articleFiltersActions } from '../../ArticleFilters/model/slice/articleFilters'
